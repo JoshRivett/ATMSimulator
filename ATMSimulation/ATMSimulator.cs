@@ -17,18 +17,6 @@ namespace ATMSimulation
             InitializeComponent();
             CentralBankComputer bank = new CentralBankComputer();
             //button initialisation
-            buttonDataRaceSuccess.MouseEnter += OnMouseEnterButtonDataRaceSuccess;
-            buttonDataRaceSuccess.MouseLeave += OnMouseLeaveButtonDataRaceSuccess;
-        }
-
-        private void OnMouseEnterButtonDataRaceSuccess(object sender, EventArgs e)
-        {
-            buttonDataRaceSuccess.BackColor = SystemColors.ControlDark; 
-        }
-
-        private void OnMouseLeaveButtonDataRaceSuccess(object sender, EventArgs e)
-        {
-            buttonDataRaceSuccess.BackColor = Color.Transparent;
         }
 
         private void exitProgram_Click(object sender, EventArgs e)
@@ -96,9 +84,9 @@ namespace ATMSimulation
             */
     }
 
-    /*
- *   The Account class encapusulates all features of a simple bank account
- */
+    /// <summary>
+    /// Class representing a bank account.
+    /// </summary>
     class Account
     {
         //the attributes for the account
@@ -124,35 +112,31 @@ namespace ATMSimulation
             this.balance = newBalance;
         }
 
-        /*
-         *   This funciton allows us to decrement the balance of an account
-         *   it perfomes a simple check to ensure the balance is greater tha
-         *   the amount being debeted
-         *   
-         *   reurns:
-         *   true if the transactions if possible
-         *   false if there are insufficent funds in the account
-         */
+        /// <summary>
+        /// Withdraws an amount of money specified by parameter.
+        /// </summary>
+        /// <param name="amount">The amount of money to be withdrawn</param>
+        /// <returns>Returns true if successful, false if not</returns>
         public Boolean decrementBalance(int amount)
         {
             if (this.balance > amount)
             {
+                //Semaphore here?
                 balance -= amount;
+                //Release semaphore here.
                 return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
-        /*
- * This funciton check the account pin against the argument passed to it
- *
- * returns:
- * true if they match
- * false if they do not
- */
+        /// <summary>
+        /// This function checks the account pin against the argument passed to it.
+        /// </summary>
+        /// <param name="pinEntered"></param>
+        /// <returns>True if they match, false if they do not</returns>
         public Boolean checkPin(int pinEntered)
         {
             if (pinEntered == pin)
@@ -164,6 +148,11 @@ namespace ATMSimulation
                 return false;
             }
         }
+
+        /// <summary>
+        /// Getter method for the account number.
+        /// </summary>
+        /// <returns>The account number</returns>
         public int getAccountNum()
         {
             return accountNum;
@@ -171,6 +160,9 @@ namespace ATMSimulation
 
     }
 
+    /// <summary>
+    /// Class representing an ATM.
+    /// </summary>
     class ATM
     {
         //local referance to the array of accounts
@@ -179,12 +171,16 @@ namespace ATMSimulation
         //this is a referance to the account that is being used
         private Account activeAccount = null;
 
-        // the atm constructor takes an array of account objects as a referance
+        /// <summary>
+        /// The atm constructor takes an array of account objects as a reference.
+        /// </summary>
+        /// <param name="ac">The reference to an array of account objects</param>
         public ATM(Account[] ac)
         {
             this.ac = ac;
             Console.WriteLine("hello from ATM");
 
+            /*
             // an infanite loop to keep the flow of controll going on and on 
             while (true)
             {
@@ -211,23 +207,18 @@ namespace ATMSimulation
                 //wipes all text from the console
                 //Console.Clear();
             }
-
+            */
 
         }
 
-        /*
-         *    this method promts for the input of an account number
-         *    the string input is then converted to an int
-         *    a for loop is used to check the enterd account number
-         *    against those held in the account array
-         *    if a match is found a referance to the match is returned
-         *    if the for loop completest with no match we return null
-         * 
-         */
+        /// <summary>
+        /// Prompts the user for an account number and then searches for it.
+        /// </summary>
+        /// <returns>Returns the corresponding account if it exists, otherwise returns null</returns>
         private Account findAccount()
         {
             Console.WriteLine("enter your account number..");
-
+            
             int input = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < this.ac.Length; i++)
@@ -241,14 +232,10 @@ namespace ATMSimulation
             return null;
         }
 
-        /*
-        * 
-        *  this jsut promt the use to enter a pin number
-        *  
-        * returns the string entered converted to an int
-        * 
-        *
-        * */
+        /// <summary>
+        /// Prompts the user for a pin and converts it to an integer.
+        /// </summary>
+        /// <returns>The parsed integer</returns>
         private int promptForPin()
         {
             Console.WriteLine("enter pin:");
@@ -265,7 +252,10 @@ namespace ATMSimulation
          *  and defer to appropriate method based on input
          *  
          */
-
+        /// <summary>
+        /// Displays menu options, prompts the user for an option, and executes the 
+        /// corresponding method.
+        /// </summary>
         private void dispOptions()
         {
             Console.WriteLine("1> take out cash");
