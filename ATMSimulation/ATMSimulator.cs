@@ -24,7 +24,7 @@ namespace ATMSimulation
 
         private void OnMouseEnterButtonDataRaceSuccess(object sender, EventArgs e)
         {
-            buttonDataRaceSuccess.BackColor = SystemColors.ControlDark;
+            buttonDataRaceSuccess.BackColor = SystemColors.ControlDark; 
         }
 
         private void OnMouseLeaveButtonDataRaceSuccess(object sender, EventArgs e)
