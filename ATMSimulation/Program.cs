@@ -21,9 +21,9 @@ namespace ATMSimulation
             ATMSimulator ATM1 = new ATMSimulator();
             ATMSimulator ATM2 = new ATMSimulator();
             
-            Application.Run(mainComputer);
+            //Application.Run(mainComputer);
             Application.Run(ATM1);
-            Application.Run(ATM2);
+            //Application.Run(ATM2);
         }
     }
 }
