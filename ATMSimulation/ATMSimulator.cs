@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace ATMSimulation
 {
+    /// <summary>
+    /// Class representing the ATM system.
+    /// </summary>
     public partial class ATMSimulator : Form
     {
+        /// <summary>
+        /// Constructor method for the ATMSimulator form.
+        /// </summary>
         public ATMSimulator()
         {
             InitializeComponent();
@@ -94,7 +100,12 @@ namespace ATMSimulation
         private int pin;
         private int accountNum;
 
-        // a constructor that takes initial values for each of the attributes (balance, pin, accountNumber)
+        /// <summary>
+        /// Constructor method for accounts.
+        /// </summary>
+        /// <param name="balance">The initial balance of the account</param>
+        /// <param name="pin">The pin code for the account</param>
+        /// <param name="accountNum">The account's ID number</param>
         public Account(int balance, int pin, int accountNum)
         {
             this.balance = balance;
@@ -102,11 +113,19 @@ namespace ATMSimulation
             this.accountNum = accountNum;
         }
 
-        //getter and setter functions for balance
+        /// <summary>
+        /// Getter method for the account's balance.
+        /// </summary>
+        /// <returns>The amount of money in the bank account's balance</returns>
         public int getBalance()
         {
             return balance;
         }
+
+        /// <summary>
+        /// Setter method for the account's balance.
+        /// </summary>
+        /// <param name="newBalance">The new amount of money to set the balance to</param>
         public void setBalance(int newBalance)
         {
             this.balance = newBalance;
@@ -284,14 +303,10 @@ namespace ATMSimulation
 
         }
 
-
-        /*
-         * 
-         * offer withdrawable amounts
-         * 
-         * based on input attempt to withraw the corosponding amount of money
-         * 
-         * */
+        /// <summary>
+        /// Displays options for withdrawing money, receives input from the user,
+        /// then executes the appropriate method if the account has enough money.
+        /// </summary>
         public void dispWithdraw()
         {
             Console.WriteLine("1> 10");
@@ -356,11 +371,9 @@ namespace ATMSimulation
             }
         }
 
-
-        /*
-         *  display balance of activeAccount and await keypress
-         *  
-         */
+        /// <summary>
+        /// Displays the balance of the current account.
+        /// </summary>
         private void dispBalance()
         {
             if (this.activeAccount != null)

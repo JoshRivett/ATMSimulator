@@ -10,12 +10,18 @@ using System.Windows.Forms;
 
 namespace ATMSimulation
 {
+    /// <summary>
+    /// Class representing the central bank computer.
+    /// </summary>
     public partial class CentralBankComputer : Form
     {
-
+        //Fields
         private Account[] ac = new Account[3];
         private ATM atm;
 
+        /// <summary>
+        /// Constructor method for the CentralBankComputer form.
+        /// </summary>
         public CentralBankComputer()
         {
             InitializeComponent();
