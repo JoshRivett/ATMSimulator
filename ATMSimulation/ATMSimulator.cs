@@ -34,6 +34,8 @@ namespace ATMSimulation
             state = "account select";
             textBoxPageTitle.Text = "ATM";
             textBoxUserPromptLeft.Text = "Enter account number:";
+            richTextBox3.Text = "ATM Simulator " + ATMNum;
+            richTextBox6.Text = "ATM " + ATMNum + " Activity Log:";
 
             //CentralBankComputer bank = new CentralBankComputer();
             //button initialisation
@@ -365,7 +367,6 @@ namespace ATMSimulation
         private int balance;
         private int pin;
         private int accountNum;
-        static Barrier barrier = new Barrier(participantCount: 2);
 
         /// <summary>
         /// Constructor method for accounts.
@@ -407,11 +408,14 @@ namespace ATMSimulation
         {
             if (this.balance > amount)
             {
-                barrier.SignalAndWait();
                 int temp;
-                //Semaphore here?
-                balance -= amount;
-                //Release semaphore here.
+                CentralBankComputer.barrier.SignalAndWait();
+
+                CentralBankComputer.semaphore.WaitOne();
+                temp = balance;
+                temp -= amount;
+                balance = temp;
+                CentralBankComputer.semaphore.Release();
                 return true;
             }
             else
@@ -544,7 +548,6 @@ namespace ATMSimulation
             int pinNumEntered = Convert.ToInt32(str);
             return pinNumEntered;
         }
-
 
         /// <summary>
         /// Displays the balance of the current account.

@@ -20,6 +20,9 @@ namespace ATMSimulation
         private Account[] ac = new Account[3];
         private Thread ATM1;
         private Thread ATM2;
+        private bool dataRace;
+        public static Barrier barrier = new Barrier(participantCount: 2);
+        public static Semaphore semaphore = new Semaphore(1, 1);
 
         /// <summary>
         /// Constructor method for the CentralBankComputer form.
@@ -65,7 +68,7 @@ namespace ATMSimulation
 
         private void atmThread()
         {
-            ATMSimulator form = new ATMSimulator(ac);
+            ATMSimulator form = new ATMSimulator(ac, 1, dataRace);
             form.ShowDialog();
         }
     }
