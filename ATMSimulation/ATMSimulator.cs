@@ -31,6 +31,7 @@ namespace ATMSimulation
             atm = new ATM(ac);
 
             state = "account select";
+            textBoxUserPrompt.Text = "Enter account number:";
 
             //CentralBankComputer bank = new CentralBankComputer();
             //button initialisation
@@ -131,7 +132,7 @@ namespace ATMSimulation
 
         private void buttonEnter_Click(object sender, EventArgs e)
         {
-            if (textBoxUserInput.Text != "")
+            if (textBoxUserInput.Text != "" || state == "other")
             {
                 if (state == "account select")
                 {
@@ -171,6 +172,42 @@ namespace ATMSimulation
                             break;
                     }
                 }
+                else if (state == "withdraw menu")
+                {
+                    int amount = 0;
+                    switch (Convert.ToInt32(textBoxUserInput.Text))
+                    {
+                        case 1:
+                            amount = 10;
+                            break;
+                        case 2:
+                            amount = 50;
+                            break;
+                        case 3:
+                            amount = 500;
+                            break;
+                    }
+                    if (atm.getActiveAccount().decrementBalance(amount) == true)
+                    {
+                        textBoxUserPrompt.Text =     amount.ToString() + " successfully withdrawn." + Environment.NewLine +
+                                                    "Press enter to continue...";
+                    }
+                    else
+                    {
+                        textBoxUserPrompt.Text =    "Insufficient funds." + Environment.NewLine +
+                                                    "Press enter to continue...";
+                    }
+                    state = "other";
+                }
+                else if (state == "other")
+                {
+                    state = "main menu";
+                    dispOptions();
+                }
+                else
+                {
+                    textBoxUserPrompt.Text = "Missing state: " + state;
+                }
             }
             textBoxUserInput.Text = "";
         }
@@ -181,44 +218,30 @@ namespace ATMSimulation
         /// </summary>
         public void dispOptions()
         {
-            textBoxUserPrompt.Text = "1> take out cash" + Environment.NewLine + "2> balance" + Environment.NewLine + "3> exit";
-
-            /*
-            int input = Convert.ToInt32(Console.ReadLine());
-
-            if (input == 1)
-            {
-                atm.dispWithdraw();
-            }
-            else if (input == 2)
-            {
-                atm.dispBalance();
-            }
-            else if (input == 3)
-            {
-
-
-            }
-            else
-            {
-
-            }
-            */
+            textBoxUserPrompt.Text =    "1> take out cash" + Environment.NewLine + 
+                                        "2> balance" + Environment.NewLine + 
+                                        "3> exit";
         }
 
         public void withdrawCash()
         {
-
+            state = "withdraw menu";
+            textBoxUserPrompt.Text =    "1> 10" + Environment.NewLine +
+                                        "2> 50" + Environment.NewLine +
+                                        "3> 500" + Environment.NewLine;
         }
 
         public void displayBalance()
         {
-
+            state = "other";
+            textBoxUserPrompt.Text =    "Current balance: " + atm.getActiveAccount().getBalance().ToString() + Environment.NewLine +
+                                        "Press enter to continue...";
         }
 
         public void logOut()
         {
-
+            state = "account select";
+            textBoxUserPrompt.Text = "Enter account number:";
         }
 
         //change the log text
