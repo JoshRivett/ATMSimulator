@@ -18,15 +18,20 @@ namespace ATMSimulation
         //Fields
         private ATM atm;
         private Button[] keyPad = new Button[10];
+        private Account[] ac;
+        private string state = "";
 
         /// <summary>
         /// Constructor method for the ATMSimulator form.
         /// </summary>
-        public ATMSimulator()
+        public ATMSimulator(Account[] ac)
         {
             InitializeComponent();
-            atm = new ATM();
-            textBoxUserPrompt.Text = "Enter Pin:";
+            this.ac = ac;
+            atm = new ATM(ac);
+
+            state = "account select";
+
             //CentralBankComputer bank = new CentralBankComputer();
             //button initialisation
 
@@ -46,14 +51,14 @@ namespace ATMSimulation
                 for (int j = 0; j < 3; j++)
                 {
                     for (int k = 0; k < 3; k++) {
-                        keyPad[i].Location = new Point(248 - 52*j, 366 - 45*k);
+                        keyPad[i].Location = new Point(248 - 52*k, 366 - 45*j);
                         Controls.Add(keyPad[i]);
                         keyPad[i].BringToFront();
                     }
                 }
             }
             */
-            
+
         }
 
         private void exitProgram_Click(object sender, EventArgs e)
@@ -124,6 +129,98 @@ namespace ATMSimulation
             }
         }
 
+        private void buttonEnter_Click(object sender, EventArgs e)
+        {
+            if (textBoxUserInput.Text != "")
+            {
+                if (state == "account select")
+                {
+                    atm.setActiveAccount(atm.findAccount(textBoxUserInput.Text));
+
+                    if (atm.getActiveAccount() != null)
+                    {
+                        textBoxUserPrompt.Text = "Login to " + atm.getActiveAccount().getAccountNum().ToString();
+                        state = "pin entry";
+                    }
+
+                }
+                else if (state == "pin entry")
+                {
+                    if (atm.getActiveAccount().checkPin(Convert.ToInt32(textBoxUserInput.Text)) == true)
+                    {
+                        state = "main menu";
+                        dispOptions();
+                    }
+                    else
+                    {
+                        textBoxUserPrompt.Text = "Incorrect pin code";
+                    }
+                }
+                else if (state == "main menu")
+                {
+                    switch (Convert.ToInt32(textBoxUserInput.Text))
+                    {
+                        case 1:
+                            withdrawCash();
+                            break;
+                        case 2:
+                            displayBalance();
+                            break;
+                        case 3:
+                            logOut();
+                            break;
+                    }
+                }
+            }
+            textBoxUserInput.Text = "";
+        }
+
+        /// <summary>
+        /// Displays menu options, prompts the user for an option, and executes the 
+        /// corresponding method.
+        /// </summary>
+        public void dispOptions()
+        {
+            textBoxUserPrompt.Text = "1> take out cash" + Environment.NewLine + "2> balance" + Environment.NewLine + "3> exit";
+
+            /*
+            int input = Convert.ToInt32(Console.ReadLine());
+
+            if (input == 1)
+            {
+                atm.dispWithdraw();
+            }
+            else if (input == 2)
+            {
+                atm.dispBalance();
+            }
+            else if (input == 3)
+            {
+
+
+            }
+            else
+            {
+
+            }
+            */
+        }
+
+        public void withdrawCash()
+        {
+
+        }
+
+        public void displayBalance()
+        {
+
+        }
+
+        public void logOut()
+        {
+
+        }
+
         //change the log text
         /*
             //Text box concatinate new log
@@ -137,7 +234,7 @@ namespace ATMSimulation
     /// <summary>
     /// Class representing a bank account.
     /// </summary>
-    class Account
+    public class Account
     {
         //the attributes for the account
         private int balance;
@@ -229,7 +326,7 @@ namespace ATMSimulation
     class ATM
     {
         //local referance to the array of accounts
-        //private Account[] ac;
+        private Account[] ac;
 
         //this is a referance to the account that is being used
         private Account activeAccount = null;
@@ -238,17 +335,18 @@ namespace ATMSimulation
         /// The ATM constructor takes an array of account objects as a reference.
         /// </summary>
         /// <param name="ac">The reference to an array of account objects</param>
-        public ATM()
+        public ATM(Account[] ac)
         {
-            //this.ac = ac;
+            this.ac = ac;
             Console.WriteLine("hello from ATM");
-            
+            /*
             // an infanite loop to keep the flow of controll going on and on 
             while (true)
             {
 
                 //ask for account number and store result in acctiveAccount (null if no match found)
                 activeAccount = this.findAccount();
+                
 
                 if (activeAccount != null)
                 {
@@ -269,27 +367,41 @@ namespace ATMSimulation
                 //wipes all text from the console
                 //Console.Clear();
             }
+            */
+        }
 
+        /// <summary>
+        /// Setter method for setting the active account.
+        /// </summary>
+        /// <param name="ac">The account to be set as active</param>
+        public void setActiveAccount(Account ac)
+        {
+            activeAccount = ac;
+        }
+
+        public Account getActiveAccount()
+        {
+            return activeAccount;
         }
 
         /// <summary>
         /// Prompts the user for an account number and then searches for it.
         /// </summary>
         /// <returns>Returns the corresponding account if it exists, otherwise returns null</returns>
-        private Account findAccount()
+        public Account findAccount(string input)
         {
             Console.WriteLine("enter your account number..");
-            /*
-            int input = Convert.ToInt32(Console.ReadLine());
+            
+            int accountNum = Convert.ToInt32(input);
 
             for (int i = 0; i < this.ac.Length; i++)
             {
-                if (ac[i].getAccountNum() == input)
+                if (ac[i].getAccountNum() == accountNum)
                 {
                     return ac[i];
                 }
             }
-            */
+            
             return null;
         }
 
@@ -297,44 +409,12 @@ namespace ATMSimulation
         /// Prompts the user for a pin and converts it to an integer.
         /// </summary>
         /// <returns>The parsed integer</returns>
-        private int promptForPin()
+        public int promptForPin()
         {
             //textBoxUserPrompt.Text = "Enter Pin:";
             String str = Console.ReadLine();
             int pinNumEntered = Convert.ToInt32(str);
             return pinNumEntered;
-        }
-
-        /// <summary>
-        /// Displays menu options, prompts the user for an option, and executes the 
-        /// corresponding method.
-        /// </summary>
-        private void dispOptions()
-        {
-            Console.WriteLine("1> take out cash");
-            Console.WriteLine("2> balance");
-            Console.WriteLine("3> exsit");
-
-            int input = Convert.ToInt32(Console.ReadLine());
-
-            if (input == 1)
-            {
-                dispWithdraw();
-            }
-            else if (input == 2)
-            {
-                dispBalance();
-            }
-            else if (input == 3)
-            {
-
-
-            }
-            else
-            {
-
-            }
-
         }
 
         /// <summary>
@@ -408,7 +488,7 @@ namespace ATMSimulation
         /// <summary>
         /// Displays the balance of the current account.
         /// </summary>
-        private void dispBalance()
+        public void dispBalance()
         {
             if (this.activeAccount != null)
             {

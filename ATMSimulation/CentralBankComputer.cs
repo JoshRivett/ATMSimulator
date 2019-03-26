@@ -33,8 +33,8 @@ namespace ATMSimulation
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
 
-            atm1 = new ATMSimulator();
-            atm2 = new ATMSimulator();
+            atm1 = new ATMSimulator(ac);
+            atm2 = new ATMSimulator(ac);
 
             atm1.Show();
             atm2.Show();

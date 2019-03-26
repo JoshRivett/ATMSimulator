@@ -64,9 +64,10 @@
             this.richTextBox3.BackColor = System.Drawing.Color.Silver;
             this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox3.Font = new System.Drawing.Font("Lucida Console", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox3.Location = new System.Drawing.Point(185, 12);
+            this.richTextBox3.Location = new System.Drawing.Point(278, 18);
+            this.richTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(190, 28);
+            this.richTextBox3.Size = new System.Drawing.Size(285, 43);
             this.richTextBox3.TabIndex = 6;
             this.richTextBox3.Text = "ATM Simulator 1";
             this.richTextBox3.WordWrap = false;
@@ -75,9 +76,10 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkGray;
             this.panel2.Controls.Add(this.textBoxLogInfo);
-            this.panel2.Location = new System.Drawing.Point(12, 548);
+            this.panel2.Location = new System.Drawing.Point(18, 843);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(554, 121);
+            this.panel2.Size = new System.Drawing.Size(831, 186);
             this.panel2.TabIndex = 4;
             // 
             // textBoxLogInfo
@@ -85,11 +87,12 @@
             this.textBoxLogInfo.BackColor = System.Drawing.Color.DarkGray;
             this.textBoxLogInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLogInfo.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLogInfo.Location = new System.Drawing.Point(3, 24);
+            this.textBoxLogInfo.Location = new System.Drawing.Point(4, 37);
+            this.textBoxLogInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxLogInfo.Multiline = true;
             this.textBoxLogInfo.Name = "textBoxLogInfo";
             this.textBoxLogInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLogInfo.Size = new System.Drawing.Size(548, 94);
+            this.textBoxLogInfo.Size = new System.Drawing.Size(821, 144);
             this.textBoxLogInfo.TabIndex = 0;
             // 
             // richTextBox6
@@ -97,9 +100,10 @@
             this.richTextBox6.BackColor = System.Drawing.Color.Silver;
             this.richTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox6.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox6.Location = new System.Drawing.Point(12, 523);
+            this.richTextBox6.Location = new System.Drawing.Point(18, 805);
+            this.richTextBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.Size = new System.Drawing.Size(224, 19);
+            this.richTextBox6.Size = new System.Drawing.Size(336, 29);
             this.richTextBox6.TabIndex = 11;
             this.richTextBox6.Text = "ATM 1 Activity Log:";
             this.richTextBox6.WordWrap = false;
@@ -110,9 +114,10 @@
             this.buttonNine.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonNine.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonNine.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNine.Location = new System.Drawing.Point(144, 272);
+            this.buttonNine.Location = new System.Drawing.Point(216, 418);
+            this.buttonNine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonNine.Name = "buttonNine";
-            this.buttonNine.Size = new System.Drawing.Size(46, 41);
+            this.buttonNine.Size = new System.Drawing.Size(69, 63);
             this.buttonNine.TabIndex = 5;
             this.buttonNine.Text = "9";
             this.buttonNine.UseVisualStyleBackColor = false;
@@ -124,9 +129,10 @@
             this.buttonEight.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEight.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonEight.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEight.Location = new System.Drawing.Point(196, 272);
+            this.buttonEight.Location = new System.Drawing.Point(294, 418);
+            this.buttonEight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEight.Name = "buttonEight";
-            this.buttonEight.Size = new System.Drawing.Size(46, 41);
+            this.buttonEight.Size = new System.Drawing.Size(69, 63);
             this.buttonEight.TabIndex = 5;
             this.buttonEight.Text = "8";
             this.buttonEight.UseVisualStyleBackColor = false;
@@ -138,9 +144,10 @@
             this.buttonSeven.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSeven.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonSeven.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSeven.Location = new System.Drawing.Point(248, 272);
+            this.buttonSeven.Location = new System.Drawing.Point(372, 418);
+            this.buttonSeven.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSeven.Name = "buttonSeven";
-            this.buttonSeven.Size = new System.Drawing.Size(46, 41);
+            this.buttonSeven.Size = new System.Drawing.Size(69, 63);
             this.buttonSeven.TabIndex = 5;
             this.buttonSeven.Text = "7";
             this.buttonSeven.UseVisualStyleBackColor = false;
@@ -152,9 +159,10 @@
             this.buttonFour.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonFour.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonFour.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFour.Location = new System.Drawing.Point(248, 319);
+            this.buttonFour.Location = new System.Drawing.Point(372, 491);
+            this.buttonFour.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonFour.Name = "buttonFour";
-            this.buttonFour.Size = new System.Drawing.Size(46, 41);
+            this.buttonFour.Size = new System.Drawing.Size(69, 63);
             this.buttonFour.TabIndex = 5;
             this.buttonFour.Text = "4";
             this.buttonFour.UseVisualStyleBackColor = false;
@@ -166,9 +174,10 @@
             this.buttonFive.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonFive.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonFive.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFive.Location = new System.Drawing.Point(196, 319);
+            this.buttonFive.Location = new System.Drawing.Point(294, 491);
+            this.buttonFive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonFive.Name = "buttonFive";
-            this.buttonFive.Size = new System.Drawing.Size(46, 41);
+            this.buttonFive.Size = new System.Drawing.Size(69, 63);
             this.buttonFive.TabIndex = 5;
             this.buttonFive.Text = "5";
             this.buttonFive.UseVisualStyleBackColor = false;
@@ -180,9 +189,10 @@
             this.buttonSix.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSix.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonSix.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSix.Location = new System.Drawing.Point(144, 319);
+            this.buttonSix.Location = new System.Drawing.Point(216, 491);
+            this.buttonSix.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSix.Name = "buttonSix";
-            this.buttonSix.Size = new System.Drawing.Size(46, 41);
+            this.buttonSix.Size = new System.Drawing.Size(69, 63);
             this.buttonSix.TabIndex = 5;
             this.buttonSix.Text = "6";
             this.buttonSix.UseVisualStyleBackColor = false;
@@ -194,9 +204,10 @@
             this.buttonTwo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonTwo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTwo.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTwo.Location = new System.Drawing.Point(196, 366);
+            this.buttonTwo.Location = new System.Drawing.Point(294, 563);
+            this.buttonTwo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonTwo.Name = "buttonTwo";
-            this.buttonTwo.Size = new System.Drawing.Size(46, 41);
+            this.buttonTwo.Size = new System.Drawing.Size(69, 63);
             this.buttonTwo.TabIndex = 5;
             this.buttonTwo.Text = "2";
             this.buttonTwo.UseVisualStyleBackColor = false;
@@ -208,9 +219,10 @@
             this.buttonOne.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonOne.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonOne.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOne.Location = new System.Drawing.Point(248, 366);
+            this.buttonOne.Location = new System.Drawing.Point(372, 563);
+            this.buttonOne.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonOne.Name = "buttonOne";
-            this.buttonOne.Size = new System.Drawing.Size(46, 41);
+            this.buttonOne.Size = new System.Drawing.Size(69, 63);
             this.buttonOne.TabIndex = 5;
             this.buttonOne.Text = "1";
             this.buttonOne.UseVisualStyleBackColor = false;
@@ -222,12 +234,14 @@
             this.buttonEnter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEnter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonEnter.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEnter.Location = new System.Drawing.Point(300, 368);
+            this.buttonEnter.Location = new System.Drawing.Point(450, 566);
+            this.buttonEnter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonEnter.Name = "buttonEnter";
-            this.buttonEnter.Size = new System.Drawing.Size(67, 33);
+            this.buttonEnter.Size = new System.Drawing.Size(100, 51);
             this.buttonEnter.TabIndex = 5;
             this.buttonEnter.Text = "Enter";
             this.buttonEnter.UseVisualStyleBackColor = false;
+            this.buttonEnter.Click += new System.EventHandler(this.buttonEnter_Click);
             // 
             // buttonSwitchAccount
             // 
@@ -235,9 +249,10 @@
             this.buttonSwitchAccount.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSwitchAccount.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonSwitchAccount.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSwitchAccount.Location = new System.Drawing.Point(421, 157);
+            this.buttonSwitchAccount.Location = new System.Drawing.Point(632, 242);
+            this.buttonSwitchAccount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSwitchAccount.Name = "buttonSwitchAccount";
-            this.buttonSwitchAccount.Size = new System.Drawing.Size(72, 35);
+            this.buttonSwitchAccount.Size = new System.Drawing.Size(108, 54);
             this.buttonSwitchAccount.TabIndex = 5;
             this.buttonSwitchAccount.Text = "Switch Account";
             this.buttonSwitchAccount.UseVisualStyleBackColor = false;
@@ -248,9 +263,10 @@
             this.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonClear.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClear.Location = new System.Drawing.Point(300, 323);
+            this.buttonClear.Location = new System.Drawing.Point(450, 497);
+            this.buttonClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(67, 33);
+            this.buttonClear.Size = new System.Drawing.Size(100, 51);
             this.buttonClear.TabIndex = 5;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = false;
@@ -262,9 +278,10 @@
             this.buttonTransferMoney.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonTransferMoney.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonTransferMoney.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTransferMoney.Location = new System.Drawing.Point(421, 107);
+            this.buttonTransferMoney.Location = new System.Drawing.Point(632, 165);
+            this.buttonTransferMoney.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonTransferMoney.Name = "buttonTransferMoney";
-            this.buttonTransferMoney.Size = new System.Drawing.Size(72, 35);
+            this.buttonTransferMoney.Size = new System.Drawing.Size(108, 54);
             this.buttonTransferMoney.TabIndex = 5;
             this.buttonTransferMoney.Text = "Transfer Money";
             this.buttonTransferMoney.UseVisualStyleBackColor = false;
@@ -275,9 +292,10 @@
             this.buttonViewBalance.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonViewBalance.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonViewBalance.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonViewBalance.Location = new System.Drawing.Point(421, 54);
+            this.buttonViewBalance.Location = new System.Drawing.Point(632, 83);
+            this.buttonViewBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonViewBalance.Name = "buttonViewBalance";
-            this.buttonViewBalance.Size = new System.Drawing.Size(72, 35);
+            this.buttonViewBalance.Size = new System.Drawing.Size(108, 54);
             this.buttonViewBalance.TabIndex = 5;
             this.buttonViewBalance.Text = "View Balance";
             this.buttonViewBalance.UseVisualStyleBackColor = false;
@@ -288,9 +306,10 @@
             this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonDelete.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Location = new System.Drawing.Point(300, 280);
+            this.buttonDelete.Location = new System.Drawing.Point(450, 431);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(67, 33);
+            this.buttonDelete.Size = new System.Drawing.Size(100, 51);
             this.buttonDelete.TabIndex = 5;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = false;
@@ -302,9 +321,10 @@
             this.buttonDepositMoney.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDepositMoney.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonDepositMoney.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDepositMoney.Location = new System.Drawing.Point(0, 137);
+            this.buttonDepositMoney.Location = new System.Drawing.Point(0, 211);
+            this.buttonDepositMoney.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDepositMoney.Name = "buttonDepositMoney";
-            this.buttonDepositMoney.Size = new System.Drawing.Size(79, 23);
+            this.buttonDepositMoney.Size = new System.Drawing.Size(118, 35);
             this.buttonDepositMoney.TabIndex = 5;
             this.buttonDepositMoney.Text = "Deposit Money";
             this.buttonDepositMoney.UseVisualStyleBackColor = false;
@@ -315,9 +335,10 @@
             this.buttonWithdrawCash.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonWithdrawCash.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonWithdrawCash.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonWithdrawCash.Location = new System.Drawing.Point(0, 84);
+            this.buttonWithdrawCash.Location = new System.Drawing.Point(0, 129);
+            this.buttonWithdrawCash.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonWithdrawCash.Name = "buttonWithdrawCash";
-            this.buttonWithdrawCash.Size = new System.Drawing.Size(79, 23);
+            this.buttonWithdrawCash.Size = new System.Drawing.Size(118, 35);
             this.buttonWithdrawCash.TabIndex = 5;
             this.buttonWithdrawCash.Text = "Withdraw Cash";
             this.buttonWithdrawCash.UseVisualStyleBackColor = false;
@@ -327,9 +348,10 @@
             this.panel5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panel5.Controls.Add(this.textBoxUserPrompt);
             this.panel5.Controls.Add(this.textBoxUserInput);
-            this.panel5.Location = new System.Drawing.Point(74, 31);
+            this.panel5.Location = new System.Drawing.Point(111, 48);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(350, 221);
+            this.panel5.Size = new System.Drawing.Size(525, 340);
             this.panel5.TabIndex = 6;
             // 
             // textBoxUserPrompt
@@ -337,9 +359,12 @@
             this.textBoxUserPrompt.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.textBoxUserPrompt.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUserPrompt.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBoxUserPrompt.Location = new System.Drawing.Point(68, 41);
+            this.textBoxUserPrompt.Location = new System.Drawing.Point(92, 51);
+            this.textBoxUserPrompt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxUserPrompt.Multiline = true;
             this.textBoxUserPrompt.Name = "textBoxUserPrompt";
-            this.textBoxUserPrompt.Size = new System.Drawing.Size(225, 18);
+            this.textBoxUserPrompt.ReadOnly = true;
+            this.textBoxUserPrompt.Size = new System.Drawing.Size(347, 169);
             this.textBoxUserPrompt.TabIndex = 0;
             // 
             // textBoxUserInput
@@ -347,9 +372,11 @@
             this.textBoxUserInput.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.textBoxUserInput.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUserInput.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBoxUserInput.Location = new System.Drawing.Point(68, 112);
+            this.textBoxUserInput.Location = new System.Drawing.Point(92, 270);
+            this.textBoxUserInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxUserInput.Name = "textBoxUserInput";
-            this.textBoxUserInput.Size = new System.Drawing.Size(225, 18);
+            this.textBoxUserInput.ReadOnly = true;
+            this.textBoxUserInput.Size = new System.Drawing.Size(347, 24);
             this.textBoxUserInput.TabIndex = 0;
             // 
             // panel3
@@ -374,9 +401,10 @@
             this.panel3.Controls.Add(this.buttonSeven);
             this.panel3.Controls.Add(this.buttonEight);
             this.panel3.Controls.Add(this.buttonNine);
-            this.panel3.Location = new System.Drawing.Point(50, 40);
+            this.panel3.Location = new System.Drawing.Point(75, 62);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(493, 461);
+            this.panel3.Size = new System.Drawing.Size(740, 709);
             this.panel3.TabIndex = 7;
             // 
             // buttonZero
@@ -385,9 +413,10 @@
             this.buttonZero.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonZero.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonZero.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonZero.Location = new System.Drawing.Point(196, 413);
+            this.buttonZero.Location = new System.Drawing.Point(294, 635);
+            this.buttonZero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonZero.Name = "buttonZero";
-            this.buttonZero.Size = new System.Drawing.Size(46, 41);
+            this.buttonZero.Size = new System.Drawing.Size(69, 63);
             this.buttonZero.TabIndex = 7;
             this.buttonZero.Text = "0";
             this.buttonZero.UseVisualStyleBackColor = false;
@@ -399,9 +428,10 @@
             this.buttonThree.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonThree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonThree.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonThree.Location = new System.Drawing.Point(144, 366);
+            this.buttonThree.Location = new System.Drawing.Point(216, 563);
+            this.buttonThree.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonThree.Name = "buttonThree";
-            this.buttonThree.Size = new System.Drawing.Size(46, 41);
+            this.buttonThree.Size = new System.Drawing.Size(69, 63);
             this.buttonThree.TabIndex = 5;
             this.buttonThree.Text = "3";
             this.buttonThree.UseVisualStyleBackColor = false;
@@ -409,16 +439,17 @@
             // 
             // ATMSimulator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(584, 673);
+            this.ClientSize = new System.Drawing.Size(876, 1035);
             this.Controls.Add(this.richTextBox6);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ATMSimulator";
             this.Text = "ATM Simulator";
             this.panel2.ResumeLayout(false);
