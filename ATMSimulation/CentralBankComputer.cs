@@ -17,7 +17,8 @@ namespace ATMSimulation
     {
         //Fields
         private Account[] ac = new Account[3];
-        private ATM atm;
+        private ATMSimulator atm1;
+        private ATMSimulator atm2;
 
         /// <summary>
         /// Constructor method for the CentralBankComputer form.
@@ -32,7 +33,11 @@ namespace ATMSimulation
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
 
-            atm = new ATM(ac);
+            atm1 = new ATMSimulator();
+            atm2 = new ATMSimulator();
+
+            atm1.Show();
+            atm2.Show();
         }
 
         private void OnMouseEnterButtonDataRaceSuccess(object sender, EventArgs e)

@@ -11,18 +11,49 @@ using System.Windows.Forms;
 namespace ATMSimulation
 {
     /// <summary>
-    /// Class representing the ATM system.
+    /// Class representing an ATM form.
     /// </summary>
     public partial class ATMSimulator : Form
     {
+        //Fields
+        private ATM atm;
+        private Button[] keyPad = new Button[10];
+
         /// <summary>
         /// Constructor method for the ATMSimulator form.
         /// </summary>
         public ATMSimulator()
         {
             InitializeComponent();
-            CentralBankComputer bank = new CentralBankComputer();
+            atm = new ATM();
+            textBoxUserPrompt.Text = "Enter Pin:";
+            //CentralBankComputer bank = new CentralBankComputer();
             //button initialisation
+
+            /*
+            for (int i = 0; i < 10; i++)
+            {
+                keyPad[i] = new Button();
+                keyPad[i].Size = new Size(46, 41);
+                keyPad[i].Text = i.ToString();
+
+                if (i == 0)
+                {
+                    keyPad[i].Location = new Point(196, 411);
+                    Controls.Add(keyPad[i]);
+                }
+                
+                for (int j = 0; j < 3; j++)
+                {
+                    for (int k = 0; k < 3; k++) {
+                        keyPad[i].Location = new Point(248 - 52*j, 366 - 45*k);
+                        Controls.Add(keyPad[i]);
+                        keyPad[i].BringToFront();
+                    }
+                }
+            }
+            */
+            
         }
 
         private void exitProgram_Click(object sender, EventArgs e)
@@ -32,52 +63,65 @@ namespace ATMSimulation
 
         private void buttonZero_Click(object sender, EventArgs e)
         {
-            
+            textBoxUserInput.Text += buttonZero.Text;
         }
 
         private void buttonNine_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonNine.Text;
         }
 
         private void buttonTwo_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonTwo.Text;
         }
 
         private void buttonThree_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonThree.Text;
         }
 
         private void buttonSix_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonSix.Text;
         }
 
         private void buttonFive_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonFive.Text;
         }
 
         private void buttonFour_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonFour.Text;
         }
 
         private void buttonOne_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonOne.Text;
         }
 
         private void buttonSeven_Click(object sender, EventArgs e)
         {
-
+            textBoxUserInput.Text += buttonSeven.Text;
         }
 
         private void buttonEight_Click(object sender, EventArgs e)
         {
+            textBoxUserInput.Text += buttonEight.Text;
+        }
 
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text = "";
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (textBoxUserInput.Text.Length > 0)
+            {
+                textBoxUserInput.Text = textBoxUserInput.Text.Remove(textBoxUserInput.Text.Length - 1);
+            }
         }
 
         //change the log text
@@ -185,21 +229,20 @@ namespace ATMSimulation
     class ATM
     {
         //local referance to the array of accounts
-        private Account[] ac;
+        //private Account[] ac;
 
         //this is a referance to the account that is being used
         private Account activeAccount = null;
 
         /// <summary>
-        /// The atm constructor takes an array of account objects as a reference.
+        /// The ATM constructor takes an array of account objects as a reference.
         /// </summary>
         /// <param name="ac">The reference to an array of account objects</param>
-        public ATM(Account[] ac)
+        public ATM()
         {
-            this.ac = ac;
+            //this.ac = ac;
             Console.WriteLine("hello from ATM");
-
-            /*
+            
             // an infanite loop to keep the flow of controll going on and on 
             while (true)
             {
@@ -226,7 +269,6 @@ namespace ATMSimulation
                 //wipes all text from the console
                 //Console.Clear();
             }
-            */
 
         }
 
@@ -237,7 +279,7 @@ namespace ATMSimulation
         private Account findAccount()
         {
             Console.WriteLine("enter your account number..");
-            
+            /*
             int input = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < this.ac.Length; i++)
@@ -247,7 +289,7 @@ namespace ATMSimulation
                     return ac[i];
                 }
             }
-
+            */
             return null;
         }
 
@@ -257,20 +299,12 @@ namespace ATMSimulation
         /// <returns>The parsed integer</returns>
         private int promptForPin()
         {
-            Console.WriteLine("enter pin:");
+            //textBoxUserPrompt.Text = "Enter Pin:";
             String str = Console.ReadLine();
             int pinNumEntered = Convert.ToInt32(str);
             return pinNumEntered;
         }
 
-        /*
-         * 
-         *  give the use the options to do with the accoutn
-         *  
-         *  promt for input
-         *  and defer to appropriate method based on input
-         *  
-         */
         /// <summary>
         /// Displays menu options, prompts the user for an option, and executes the 
         /// corresponding method.

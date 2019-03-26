@@ -18,11 +18,11 @@ namespace ATMSimulation
             Application.SetCompatibleTextRenderingDefault(false);
 
             CentralBankComputer mainComputer = new CentralBankComputer();
-            ATMSimulator ATM1 = new ATMSimulator();
-            ATMSimulator ATM2 = new ATMSimulator();
+            //ATMSimulator ATM1 = new ATMSimulator();
+            //ATMSimulator ATM2 = new ATMSimulator();
             
-            //Application.Run(mainComputer);
-            Application.Run(ATM1);
+            Application.Run(mainComputer);
+            //Application.Run(ATM1);
             //Application.Run(ATM2);
         }
     }
