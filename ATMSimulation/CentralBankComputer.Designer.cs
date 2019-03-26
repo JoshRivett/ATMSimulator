@@ -66,6 +66,7 @@
             this.buttonDataRaceSuccess.TabIndex = 5;
             this.buttonDataRaceSuccess.Text = "Data Race Success";
             this.buttonDataRaceSuccess.UseVisualStyleBackColor = false;
+            this.buttonDataRaceSuccess.Click += new System.EventHandler(this.buttonDataRaceSuccess_Click);
             // 
             // buttonDataRaceFail
             // 
@@ -80,6 +81,7 @@
             this.buttonDataRaceFail.TabIndex = 5;
             this.buttonDataRaceFail.Text = "Data Race Fail";
             this.buttonDataRaceFail.UseVisualStyleBackColor = false;
+            this.buttonDataRaceFail.Click += new System.EventHandler(this.buttonDataRaceFail_Click);
             // 
             // richTextBox1
             // 
