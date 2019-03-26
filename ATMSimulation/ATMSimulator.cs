@@ -189,7 +189,7 @@ namespace ATMSimulation
                     }
                     if (atm.getActiveAccount().decrementBalance(amount) == true)
                     {
-                        textBoxUserPrompt.Text =     amount.ToString() + " successfully withdrawn." + Environment.NewLine +
+                        textBoxUserPrompt.Text =    amount.ToString() + " successfully withdrawn." + Environment.NewLine +
                                                     "Press enter to continue...";
                     }
                     else
@@ -304,8 +304,11 @@ namespace ATMSimulation
         {
             if (this.balance > amount)
             {
+                int temp;
                 //Semaphore here?
-                balance -= amount;
+                temp = balance;
+                temp -= amount;
+                balance = temp;
                 //Release semaphore here.
                 return true;
             }
