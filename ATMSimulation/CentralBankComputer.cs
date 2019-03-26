@@ -19,7 +19,7 @@ namespace ATMSimulation
         private Account[] ac = new Account[3];
         private ATMSimulator atm1;
         private ATMSimulator atm2;
-
+        private Boolean dataRace;
         /// <summary>
         /// Constructor method for the CentralBankComputer form.
         /// </summary>
@@ -33,11 +33,7 @@ namespace ATMSimulation
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
 
-            atm1 = new ATMSimulator(ac);
-            atm2 = new ATMSimulator(ac);
-
-            atm1.Show();
-            atm2.Show();
+            dataRace = true;
         }
 
         private void OnMouseEnterButtonDataRaceSuccess(object sender, EventArgs e)
@@ -48,6 +44,41 @@ namespace ATMSimulation
         private void OnMouseLeaveButtonDataRaceSuccess(object sender, EventArgs e)
         {
             buttonDataRaceSuccess.BackColor = Color.Transparent;
+        }
+
+        private void buttonDataRaceFail_Click(object sender, EventArgs e)
+        {
+            dataRace = true;
+
+            if (atm1 != null)
+            {
+                atm1.Hide();
+                atm2.Hide();
+            }
+
+            atm1 = new ATMSimulator(ac,1, this.dataRace);
+            atm2 = new ATMSimulator(ac,2, this.dataRace);
+
+            atm1.Show();
+            atm2.Show();
+
+        }
+
+        private void buttonDataRaceSuccess_Click(object sender, EventArgs e)
+        {
+            dataRace = false;
+
+            if (atm1 != null)
+            {
+                atm1.Hide();
+                atm2.Hide();
+            }
+
+            atm1 = new ATMSimulator(ac, 1, this.dataRace);
+            atm2 = new ATMSimulator(ac, 2, this.dataRace);
+
+            atm1.Show();
+            atm2.Show();
         }
     }
 }
