@@ -530,35 +530,22 @@ namespace ATMSimulation
             if (this.state == "deposit menu")
             {
                 //Attempt to deposit cash, and if successful, display this to the user
-                if (atm.getActiveAccount().decrementBalance(-10, dataRace) == true)
-                {
-                    textBoxUserPromptLeft.Clear();
-                    textBoxUserPromptRight.Clear();
+                atm.getActiveAccount().decrementBalance(-10, dataRace);
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
 
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
 
-                    textBoxUserPromptLeft.Text = "£10" + " successfully deposited." + Environment.NewLine;
-                    textBoxUserPromptLeft.Text = "Remember to Take your money!" + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                textBoxUserPromptLeft.Text = "£10" + " successfully deposited." + Environment.NewLine;
+                textBoxUserPromptLeft.Text = "Remember to Take your money!" + Environment.NewLine;
+                textBoxUserPromptRight.Text = "Press enter to continue...";
 
+                state = "other";
 
-                    state = "other";
-
-                    //Updates log
-                    updateLog("Deposited £10.");
-                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
-                }
-                //Otherwise, display an error message (possibly redundant)
-                else
-                {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
+                //Updates log
+                updateLog("Deposited £10.");
+                updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
             }
             //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
@@ -583,14 +570,10 @@ namespace ATMSimulation
                 //Otherwise, displays an error message
                 else
                 {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
+                    withdrawError();
                 }
             }
+            //Checks if the program is on the transfer money screen
             else if (this.state == "transfer money")
             {
                 state = "account select";
@@ -604,13 +587,13 @@ namespace ATMSimulation
                 textBoxUserPromptRight.Clear();
                 textBoxUserPromptRight.Text = "Enter account number:";
 
-            }else if (state == "confirm")
+            }
+            //Checks if the program is on the confirmation screen
+            else if (state == "confirm")
             {
                 //transfer money
                 atm.getActiveAccount().decrementBalance(amountToSend, dataRace);
-
                 sendToAccount.decrementBalance(-amountToSend, dataRace);
-                
             }
             //Checks if the program is on the main menu, and then executes the appropriate method
             else if (state == "main menu")
@@ -637,32 +620,25 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonViewBalance_Click(object sender, EventArgs e)
         {
+            //Checks if the program is on the deposit menu
             if (state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-20, dataRace) == true)
-                {
-                    textBoxUserPromptLeft.Clear();
-                    textBoxUserPromptRight.Clear();
+                //Attempts to desposit cash, and if successful, presents this to the user
+                atm.getActiveAccount().decrementBalance(-20, dataRace);
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
 
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
 
-                    textBoxUserPromptLeft.Text = "£20" + " successfully deposited." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
-                else
-                {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
+                textBoxUserPromptLeft.Text = "£20" + " successfully deposited." + Environment.NewLine;
+                textBoxUserPromptRight.Text = "Press enter to continue...";
+                state = "other";
             }
+            //Checks if the program is on the withdraw menu
             else if (state == "withdraw menu")
             {
+                //Attempts to withdraw cash and if successful, present this to the user
                 if (atm.getActiveAccount().decrementBalance(20, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
@@ -679,16 +655,13 @@ namespace ATMSimulation
 
                     state = "other";
                 }
+                //Otherwise, display an error message
                 else
                 {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
+                    withdrawError();
                 }
             }
+            //Checks if the program is on the main menu
             else if (state == "main menu")
             {
                 displayBalance();
@@ -697,6 +670,7 @@ namespace ATMSimulation
                 //Updates log
                 updateLog("Selected view balance.");
             }
+            //Otherwise, the program is waiting for a key press
             else if (state == "other")
             {
                 state = "main menu";
@@ -712,32 +686,26 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonDepositMoney_Click(object sender, EventArgs e)
         {
+            //Checks if the program is on the deposit menu
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-30, dataRace) == true)
-                {
-                    textBoxUserPromptLeft.Clear();
-                    textBoxUserPromptRight.Clear();
+                //Attempts to deposit cash and if successful, presents this to the user
+                atm.getActiveAccount().decrementBalance(-30, dataRace);
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
 
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
 
-                    textBoxUserPromptLeft.Text = "£30" + " successfully deposited." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                textBoxUserPromptLeft.Text = "£30" + " successfully deposited." + Environment.NewLine;
+                textBoxUserPromptRight.Text = "Press enter to continue...";
 
-                    state = "other";
-                }
-                else
-                {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
-            }else if (this.state == "withdraw menu")
+                state = "other";
+            }
+            //Checks if the program is on the withdraw menu
+            else if (this.state == "withdraw menu")
             {
+                //Attempts to withdraw cash and if successful, presents this to the user
                 if (atm.getActiveAccount().decrementBalance(30, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
@@ -754,22 +722,20 @@ namespace ATMSimulation
 
                     state = "other";
                 }
+                //Otherwise, display an error message
                 else
                 {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
+                    withdrawError();
                 }
             }
+            //Checks if the program is on the confirmation screen
             else if (state == "confirm")
             {
                 //do nothing
                 state = "main menu";
                 dispOptions();
             }
+            //Checks if the program is on the main menu
             else if (state == "main menu")
             {
                 depositCash();
@@ -777,8 +743,8 @@ namespace ATMSimulation
                 //Updates log
                 updateLog("Selected deposit option.");
             }
-
-            if (state == "other")
+            //Otherwise, the program is waiting for a key press
+            else if (state == "other")
             {
                 state = "main menu";
                 dispOptions();
@@ -793,32 +759,25 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonTransferMoney_Click(object sender, EventArgs e)
         {
+            //Checks if the program is on the deposit menu
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-40, dataRace) == true)
-                {
-                    textBoxUserPromptLeft.Clear();
-                    textBoxUserPromptRight.Clear();
+                //Attempts to deposit cash and if successful, present this to the user
+                atm.getActiveAccount().decrementBalance(-40, dataRace);
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
 
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
 
-                    textBoxUserPromptLeft.Text = "£40" + " successfully deposited." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
-                else
-                {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
+                textBoxUserPromptLeft.Text = "£40" + " successfully deposited." + Environment.NewLine;
+                textBoxUserPromptRight.Text = "Press enter to continue...";
+                state = "other";
             }
+            //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
             {
+                //Attempts to withdraw cash and if successful, present this to the user
                 if (atm.getActiveAccount().decrementBalance(40, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
@@ -835,23 +794,21 @@ namespace ATMSimulation
 
                     state = "other";
                 }
+                //Otherwise, display an error message
                 else
                 {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
+                    withdrawError();
                 }
             }
+            //Checks if the program is on the main menu
             else if (state == "main menu")
             {
                 transferMoney();
 
                 //Updates log
-                updateLog("Selected transfer money");
+                updateLog("Selected transfer money.");
             }
+            //Otherwise, the program is waiting for a key press
             else if (state == "other")
             {
                 state = "main menu";
@@ -867,32 +824,25 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonSwitchAccount_Click(object sender, EventArgs e)
         {
+            //Checks if the program is on the deposit menu
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-50, dataRace) == true)
-                {
-                    textBoxUserPromptLeft.Clear();
-                    textBoxUserPromptRight.Clear();
+                //Attempts to withdraw cash and if successful, present this to the user
+                atm.getActiveAccount().decrementBalance(-50, dataRace);
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
 
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
 
-                    textBoxUserPromptLeft.Text = "£50" + " successfully deposited." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
-                else
-                {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
-                }
+                textBoxUserPromptLeft.Text = "£50" + " successfully deposited." + Environment.NewLine;
+                textBoxUserPromptRight.Text = "Press enter to continue...";
+                state = "other";
             }
+            //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
             {
+                //Attempts to withdraw cash and if successful, present this to the user
                 if (atm.getActiveAccount().decrementBalance(50, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
@@ -905,16 +855,13 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
                 }
+                //Otherwise, display an error message
                 else
                 {
-                    textBoxPageTitle.Clear();
-                    textBoxPageTitle.Text = "ATM";
-
-                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
-                    textBoxUserPromptRight.Text = "Press enter to continue...";
-                    state = "other";
+                    withdrawError();
                 }
             }
+            //Checks if the program is on the main menu
             else if (state == "main menu")
             {
                 logOut();
@@ -923,11 +870,25 @@ namespace ATMSimulation
                 //Updates log
                 updateLog("Selected switch account.");
             }
+            //Otherwise, the program is waiting for a keypress
             else if (state == "other")
             {
                 state = "main menu";
                 dispOptions();
             }
+        }
+
+        /// <summary>
+        /// Displays an error message for when an account has insufficient funds.
+        /// </summary>
+        private void withdrawError()
+        {
+            textBoxPageTitle.Clear();
+            textBoxPageTitle.Text = "ATM";
+
+            textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+            textBoxUserPromptRight.Text = "Press enter to continue...";
+            state = "other";
         }
     }
 
