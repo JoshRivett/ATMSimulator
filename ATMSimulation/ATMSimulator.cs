@@ -213,6 +213,9 @@ namespace ATMSimulation
 
                         textBoxUserPromptLeft.Text = "Login to " + atm.getActiveAccount().getAccountNum().ToString();
                         state = "pin entry";
+
+                        //Updates log
+                        updateLog("Attempted login.");
                     }
 
                 }
@@ -486,7 +489,7 @@ namespace ATMSimulation
         public void updateLog(string updateInfo)
         {
             //Text box concatenate new log
-            textBoxLogInfo.Text += updateInfo + Environment.NewLine;
+            textBoxLogInfo.Text += "Account " + atm.getActiveAccount().getAccountNum().ToString() + ": " + updateInfo + Environment.NewLine;
             textBoxLogInfo.SelectionStart = textBoxLogInfo.TextLength;
             textBoxLogInfo.ScrollToCaret();
         }
@@ -529,9 +532,6 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonWithdrawCash_Click(object sender, EventArgs e)
         {
-            //updates log
-            textBoxLogInfo.Text += this.Name.ToString() + "Account holder chose Withdraw Option" + Environment.NewLine;
-
             //Checks if the program is on the deposit menu
             if (this.state == "deposit menu")
             {
@@ -550,6 +550,10 @@ namespace ATMSimulation
 
 
                     state = "other";
+
+                    //Updates log
+                    updateLog("Deposited £10.");
+                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
                 }
                 //Otherwise, display an error message (possibly redundant)
                 else
@@ -622,6 +626,9 @@ namespace ATMSimulation
             else if (state == "main menu")
             {
                 withdrawCash();
+
+                //Updates log
+                updateLog("Selected withdraw.");
             }
             //Otherwise, the program is waiting for a key press to continue.
             else if (state == "other")
@@ -640,9 +647,6 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonViewBalance_Click(object sender, EventArgs e)
         {
-            //updates log
-            textBoxLogInfo.Text += this.Name.ToString() + "Account holder viewed balance" + Environment.NewLine;
-
             if (state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-20, dataRace) == true)
@@ -713,7 +717,11 @@ namespace ATMSimulation
             {
                 displayBalance();
                 state = "other";
-            }else if (state == "other")
+
+                //Updates log
+                updateLog("Selected view balance.");
+            }
+            else if (state == "other")
             {
                 state = "main menu";
                 dispOptions();
@@ -728,8 +736,6 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonDepositMoney_Click(object sender, EventArgs e)
         {
-            //updates log
-            textBoxLogInfo.Text += this.Name.ToString() + "Account Holder has chosen to deposit Money." + Environment.NewLine;
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-30, dataRace) == true)
@@ -805,6 +811,9 @@ namespace ATMSimulation
             else if (state == "main menu")
             {
                 depositCash();
+
+                //Updates log
+                updateLog("Selected deposit option.");
             }
 
             if (state == "other")
@@ -822,9 +831,6 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonTransferMoney_Click(object sender, EventArgs e)
         {
-            //updates log
-            textBoxLogInfo.Text += this.Name.ToString() + "Account holder has chosen the transfer money option." + Environment.NewLine;
-
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-40, dataRace) == true)
@@ -894,6 +900,9 @@ namespace ATMSimulation
             else if (state == "main menu")
             {
                 transferMoney();
+
+                //Updates log
+                updateLog("Selected transfer money");
             }
             else if (state == "other")
             {
@@ -910,9 +919,6 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonSwitchAccount_Click(object sender, EventArgs e)
         {
-            //updates log
-            textBoxLogInfo.Text += this.Name.ToString() + "Account Holder has chosen to switch accounts." + Environment.NewLine;
-
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-50, dataRace) == true)
@@ -979,6 +985,9 @@ namespace ATMSimulation
             {
                 logOut();
                 state = "other";
+
+                //Updates log
+                updateLog("Selected switch account.");
             }
             else if (state == "other")
             {

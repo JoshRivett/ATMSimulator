@@ -143,6 +143,8 @@ namespace ATMSimulation
             {
                 ATM1.Abort();
                 ATM2.Abort();
+                ATM1 = null;
+                ATM2 = null;
             }
         }
 
