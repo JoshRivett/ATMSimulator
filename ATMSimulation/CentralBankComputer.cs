@@ -169,5 +169,10 @@ namespace ATMSimulation
                 barrier.RemoveParticipant();
             }
         }
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("");
+        }
     }
 }

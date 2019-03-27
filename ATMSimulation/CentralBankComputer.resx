@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBoxLogInfo.Text" xml:space="preserve">
+    <value>First, select or deselect the 'Enable Barrier' option.
+Checking the box will allow a data race simulation, pausing one ATM Simulator after selecting cash amount, allowing time to select another cash amount for the other ATM.
+Deselecting the check box will allow free control over the ATM simulator, however you will not be able to simulate the data race.
+
+Once you have selected your desired 'Enable Barrier' option, select either data race fail or data race success. This will open two ATM Simulator forms.
+
+To view the data race you will need to log into the same account on both simulators, then, either select withdraw on both or deposit on both then follow the instructions.</value>
+  </data>
 </root>
