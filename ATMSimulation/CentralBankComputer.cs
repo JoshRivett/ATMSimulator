@@ -24,6 +24,7 @@ namespace ATMSimulation
         private const int ATMNUM_1 = 1;
         private const int ATMNUM_2 = 2;
         public static Barrier barrier = new Barrier(participantCount: 2);
+        public static bool barrierEnabled = true;
         public static Semaphore semaphore = new Semaphore(1, 1);
 
         /// <summary>

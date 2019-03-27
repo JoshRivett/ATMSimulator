@@ -517,7 +517,7 @@ namespace ATMSimulation
         {
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-10) == true)
+                if (atm.getActiveAccount().decrementBalance(-10, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -541,7 +541,7 @@ namespace ATMSimulation
             }
             else if (this.state == "withdraw menu")
             {
-                if (atm.getActiveAccount().decrementBalance(10) == true)
+                if (atm.getActiveAccount().decrementBalance(10, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -562,11 +562,12 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
                 }
-            }else if (state == "main menu")
+            }
+            else if (state == "main menu")
             {
                 withdrawCash();
-                state = "other";
-            }else if (state == "other")
+            }
+            else if (state == "other")
             {
                 state = "main menu";
                 dispOptions();
@@ -579,7 +580,7 @@ namespace ATMSimulation
 
             if (state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-20) == true)
+                if (atm.getActiveAccount().decrementBalance(-20, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -603,7 +604,7 @@ namespace ATMSimulation
             }
             else if (state == "withdraw menu")
             {
-                if (atm.getActiveAccount().decrementBalance(20) == true)
+                if (atm.getActiveAccount().decrementBalance(20, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -640,7 +641,7 @@ namespace ATMSimulation
         {
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-30) == true)
+                if (atm.getActiveAccount().decrementBalance(-30, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -663,7 +664,7 @@ namespace ATMSimulation
                 }
             }else if (this.state == "withdraw menu")
             {
-                if (atm.getActiveAccount().decrementBalance(30) == true)
+                if (atm.getActiveAccount().decrementBalance(30, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -701,7 +702,7 @@ namespace ATMSimulation
         {
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-40) == true)
+                if (atm.getActiveAccount().decrementBalance(-40, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -725,7 +726,7 @@ namespace ATMSimulation
             }
             else if (this.state == "withdraw menu")
             {
-                if (atm.getActiveAccount().decrementBalance(40) == true)
+                if (atm.getActiveAccount().decrementBalance(40, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -761,7 +762,7 @@ namespace ATMSimulation
         {
             if (this.state == "deposit menu")
             {
-                if (atm.getActiveAccount().decrementBalance(-50) == true)
+                if (atm.getActiveAccount().decrementBalance(-50, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
@@ -785,7 +786,7 @@ namespace ATMSimulation
             }
             else if (this.state == "withdraw menu")
             {
-                if (atm.getActiveAccount().decrementBalance(50) == true)
+                if (atm.getActiveAccount().decrementBalance(50, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();

@@ -371,7 +371,6 @@
             this.textBoxPageTitle.Size = new System.Drawing.Size(313, 30);
             this.textBoxPageTitle.TabIndex = 0;
             this.textBoxPageTitle.Text = "ATM";
-            this.textBoxPageTitle.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBoxUserPromptLeft
             // 
