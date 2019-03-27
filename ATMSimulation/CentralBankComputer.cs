@@ -35,11 +35,19 @@ namespace ATMSimulation
             buttonDataRaceSuccess.MouseEnter += OnMouseEnterButtonDataRaceSuccess;
             buttonDataRaceSuccess.MouseLeave += OnMouseLeaveButtonDataRaceSuccess;
             //account initialisation
+            initialiseAccounts();
+
+            dataRace = true;
+        }
+
+        /// <summary>
+        /// Initialises the accounts to their default values.
+        /// </summary>
+        public void initialiseAccounts()
+        {
             ac[0] = new Account(300, 1111, 111111);
             ac[1] = new Account(750, 2222, 222222);
             ac[2] = new Account(3000, 3333, 333333);
-
-            dataRace = true;
         }
 
         /// <summary>
@@ -70,12 +78,16 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonDataRaceFail_Click(object sender, EventArgs e)
         {
-            dataRace = true;
+            //Makes sure either form/thread has not already been started.
+            if (ATM1 == null && ATM2 == null)
+            {
+                dataRace = true;
 
-            ATM1 = new Thread(new ThreadStart(atmThread1));
-            ATM2 = new Thread(new ThreadStart(atmThread2));
-            ATM1.Start();
-            ATM2.Start();
+                ATM1 = new Thread(new ThreadStart(atmThread1));
+                ATM2 = new Thread(new ThreadStart(atmThread2));
+                ATM1.Start();
+                ATM2.Start();
+            }
         }
 
         /// <summary>
@@ -86,12 +98,16 @@ namespace ATMSimulation
         /// <param name="e"></param>
         private void buttonDataRaceSuccess_Click(object sender, EventArgs e)
         {
-            dataRace = false;
+            //Makes sure either form/thread has not already been started.
+            if (ATM1 == null && ATM2 == null)
+            {
+                dataRace = false;
 
-            ATM1 = new Thread(new ThreadStart(atmThread1));
-            ATM2 = new Thread(new ThreadStart(atmThread2));
-            ATM1.Start();
-            ATM2.Start();
+                ATM1 = new Thread(new ThreadStart(atmThread1));
+                ATM2 = new Thread(new ThreadStart(atmThread2));
+                ATM1.Start();
+                ATM2.Start();
+            }
         }
 
         /// <summary>
@@ -110,6 +126,24 @@ namespace ATMSimulation
         {
             ATMSimulator form = new ATMSimulator(ac, ATMNUM_2, dataRace);
             form.ShowDialog();
+        }
+
+        /// <summary>
+        /// Event handler for the reset simulation button.
+        /// Resets the accounts back to their default values and closes the ATM forms.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonResetSimulation_Click(object sender, EventArgs e)
+        {
+            initialiseAccounts();
+
+            //Makes sure the forms/threads have already been started.
+            if (ATM1 != null && ATM2 != null)
+            {
+                ATM1.Abort();
+                ATM2.Abort();
+            }
         }
     }
 }

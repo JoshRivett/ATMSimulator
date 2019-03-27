@@ -18,10 +18,10 @@ namespace ATMSimulation
     {
         //Fields
         private ATM atm;
-        private Button[] keyPad = new Button[10];
         private Account[] ac;
         private string state = "";
         private bool dataRace;
+        //private Button[] keyPad = new Button[10];
 
         /// <summary>
         /// Constructor method for the ATMSimulator form.
