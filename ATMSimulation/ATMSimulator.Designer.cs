@@ -390,7 +390,6 @@
             this.textBoxUserPromptLeft.ReadOnly = true;
             this.textBoxUserPromptLeft.Size = new System.Drawing.Size(168, 115);
             this.textBoxUserPromptLeft.TabIndex = 0;
-            this.textBoxUserPromptLeft.TextChanged += new System.EventHandler(this.textBoxUserPromptLeft_TextChanged);
             // 
             // textBoxUserInput
             // 

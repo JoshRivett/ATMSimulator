@@ -46,33 +46,6 @@ namespace ATMSimulation
             textBoxUserPromptLeft.Text = "Enter account number:";
             richTextBox3.Text = "ATM Simulator " + ATMNum;
             richTextBox6.Text = "ATM " + ATMNum + " Activity Log:";
-
-            //CentralBankComputer bank = new CentralBankComputer();
-            //button initialisation
-
-            /*
-            for (int i = 0; i < 10; i++)
-            {
-                keyPad[i] = new Button();
-                keyPad[i].Size = new Size(46, 41);
-                keyPad[i].Text = i.ToString();
-
-                if (i == 0)
-                {
-                    keyPad[i].Location = new Point(196, 411);
-                    Controls.Add(keyPad[i]);
-                }
-                
-                for (int j = 0; j < 3; j++)
-                {
-                    for (int k = 0; k < 3; k++) {
-                        keyPad[i].Location = new Point(248 - 52*k, 366 - 45*j);
-                        Controls.Add(keyPad[i]);
-                        keyPad[i].BringToFront();
-                    }
-                }
-            }
-            */
         }
 
         /// <summary>
@@ -347,7 +320,6 @@ namespace ATMSimulation
                 //Otherwise, a state has not been accounted for and a debug message is displayed
                 else
                 {
-
                     textBoxUserPromptLeft.Clear();
                     textBoxUserPromptRight.Clear();
 
@@ -408,15 +380,11 @@ namespace ATMSimulation
             textBoxUserPromptRight.Text += "< £50" + Environment.NewLine; //switch account button
 
             this.state = "withdraw menu";
-
-            /*
-            textBoxUserPromptRight.Text =    "1> 10" + Environment.NewLine +
-                                        "2> 50" + Environment.NewLine +
-                                        "3> 500" + Environment.NewLine;
-
-            */
         }
 
+        /// <summary>
+        /// Prompts the user to select an amount of cash to deposit, then presents menu options.
+        /// </summary>
         public void depositCash()
         {
 
@@ -436,13 +404,6 @@ namespace ATMSimulation
             textBoxUserPromptRight.Text += "< £50" + Environment.NewLine; //switch account button
 
             this.state = "deposit menu";
-
-            /*
-            textBoxUserPromptRight.Text =    "1> 10" + Environment.NewLine +
-                                        "2> 50" + Environment.NewLine +
-                                        "3> 500" + Environment.NewLine;
-
-            */
         }
 
         public void dipConfimation()
@@ -472,11 +433,6 @@ namespace ATMSimulation
             textBoxUserPromptRight.Text += "Press enter to continue..." + Environment.NewLine;
 
             state = "other";
-
-            /*
-            textBoxUserPromptRight.Text =    "Current balance: " + atm.getActiveAccount().getBalance().ToString() + Environment.NewLine +
-                                        "Press enter to continue...";
-            */
         }
 
         /// <summary>
@@ -529,37 +485,51 @@ namespace ATMSimulation
             textBoxLogInfo.ScrollToCaret();
         }
 
-        //takes string, replaces existing string with new string
+        /// <summary>
+        /// Takes a string, then replaces the existing string with the new string.
+        /// </summary>
+        /// <param name="newText">The new text to replace the old text</param>
         public void updateTextBoxUserPromptLeft(string newText)
         {
             textBoxUserPromptLeft.Text = newText;
 
         }
 
-        //takes string, replaces existing string with new string
+        /// <summary>
+        /// Takes a string, then replaces the existing string with the new string.
+        /// </summary>
+        /// <param name="newText">The new text to replace the old text</param>
         public void updateTextBoxUserPromptRight(string newText)
         {
             textBoxUserPromptRight.Text = newText;
 
         }
 
-        //takes string, replaces existing string with new string
+        /// <summary>
+        /// Takes a string, then replaces the existing string with the new string.
+        /// </summary>
+        /// <param name="newText">The new text to replace the old text</param>
         public void updateTextBoxPageTitle(string newText)
         {
             textBoxPageTitle.Text = newText;
 
         }
 
-
-        private void textBoxUserPromptLeft_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Event handler for the withdraw cash button.
+        /// Reacts differently depending on the state of the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonWithdrawCash_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account holder chose Withdraw Option" + Environment.NewLine;
+
+            //Checks if the program is on the deposit menu
             if (this.state == "deposit menu")
             {
+                //Attempt to deposit cash, and if successful, display this to the user
                 if (atm.getActiveAccount().decrementBalance(-10, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
@@ -575,6 +545,7 @@ namespace ATMSimulation
 
                     state = "other";
                 }
+                //Otherwise, display an error message (possibly redundant)
                 else
                 {
                     textBoxPageTitle.Clear();
@@ -585,8 +556,10 @@ namespace ATMSimulation
                     state = "other";
                 }
             }
+            //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
             {
+                //Attempts to withdraw, and if successful, displays this to the user
                 if (atm.getActiveAccount().decrementBalance(10, dataRace) == true)
                 {
                     textBoxUserPromptLeft.Clear();
@@ -603,6 +576,7 @@ namespace ATMSimulation
 
                     state = "other";
                 }
+                //Otherwise, displays an error message
                 else
                 {
                     textBoxPageTitle.Clear();
@@ -634,10 +608,12 @@ namespace ATMSimulation
                 sendToAccount.decrementBalance(-amountToSend, dataRace);
                 
             }
+            //Checks if the program is on the main menu, and then executes the appropriate method
             else if (state == "main menu")
             {
                 withdrawCash();
             }
+            //Otherwise, the program is waiting for a key press to continue.
             else if (state == "other")
             {
                 state = "main menu";
@@ -646,8 +622,16 @@ namespace ATMSimulation
 
         }
 
+        /// <summary>
+        /// Event handler for the view balance button.
+        /// Reacts differently depending on the state of the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonViewBalance_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account holder viewed balance" + Environment.NewLine;
 
             if (state == "deposit menu")
             {
@@ -712,8 +696,16 @@ namespace ATMSimulation
             }
         }
 
+        /// <summary>
+        /// Event handler for the deposit money button.
+        /// Reacts differently depending on the state of the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDepositMoney_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account Holder has chosen to deposit Money." + Environment.NewLine;
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-30, dataRace) == true)
@@ -784,8 +776,17 @@ namespace ATMSimulation
             }
         }
 
+        /// <summary>
+        /// Event handler for the transfer money button.
+        /// Reacts differently depending on the state of the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonTransferMoney_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account holder has chosen the transfer money option." + Environment.NewLine;
+
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-40, dataRace) == true)
@@ -841,15 +842,25 @@ namespace ATMSimulation
             else if (state == "main menu")
             {
                 transferMoney();
-            }else if (state == "other")
+            }
+            else if (state == "other")
             {
                 state = "main menu";
                 dispOptions();
             }
         }
 
+        /// <summary>
+        /// Event handler for the switch account button.
+        /// Reacts differently depending on the state of the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSwitchAccount_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account Holder has chosen to switch accounts." + Environment.NewLine;
+
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-50, dataRace) == true)
@@ -966,7 +977,7 @@ namespace ATMSimulation
                 {
                     int temp;
 
-                    CentralBankComputer.barrier.SignalAndWait();
+                    if (CentralBankComputer.barrierEnabled) { CentralBankComputer.barrier.SignalAndWait(); }
 
                     CentralBankComputer.semaphore.WaitOne();
                     temp = balance;
@@ -988,7 +999,8 @@ namespace ATMSimulation
                     int temp;
                     temp = balance;
                     temp -= amount;
-                    CentralBankComputer.barrier.SignalAndWait();
+                    //Checks if the barrier is enabled before invoking it.
+                    if (CentralBankComputer.barrierEnabled) { CentralBankComputer.barrier.SignalAndWait(); }
                     balance = temp;
                     return true;
                 }

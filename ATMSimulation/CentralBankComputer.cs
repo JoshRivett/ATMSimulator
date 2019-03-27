@@ -37,7 +37,6 @@ namespace ATMSimulation
             buttonDataRaceSuccess.MouseLeave += OnMouseLeaveButtonDataRaceSuccess;
             //account initialisation
             initialiseAccounts();
-
             dataRace = true;
         }
 
@@ -144,6 +143,28 @@ namespace ATMSimulation
             {
                 ATM1.Abort();
                 ATM2.Abort();
+            }
+        }
+
+        /// <summary>
+        /// Event handler for the barrier checkbox.
+        /// Toggles whether or not the barrier is enabled.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkBoxBarrier_CheckedChanged(object sender, EventArgs e)
+        {
+            barrierEnabled = checkBoxBarrier.Checked;
+
+            //If the barrier is enabled, bring the participant count back up to 2
+            if (barrierEnabled)
+            {
+                barrier.AddParticipant();
+            }
+            //Otherwise, bring the participant count down to 1
+            else
+            {
+                barrier.RemoveParticipant();
             }
         }
     }
