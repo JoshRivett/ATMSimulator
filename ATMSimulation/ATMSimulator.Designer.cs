@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATMSimulator));
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
@@ -54,11 +55,16 @@
             this.textBoxUserPromptLeft = new System.Windows.Forms.TextBox();
             this.textBoxUserInput = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tenPoundNote = new System.Windows.Forms.Panel();
+            this.twentyPoundNote = new System.Windows.Forms.Panel();
             this.buttonZero = new System.Windows.Forms.Button();
             this.buttonThree = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.tenPoundNote.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox3
@@ -400,6 +406,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightGray;
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.buttonZero);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.richTextBox3);
@@ -424,6 +431,34 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(531, 524);
             this.panel3.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.DarkGray;
+            this.panel4.Controls.Add(this.tenPoundNote);
+            this.panel4.Location = new System.Drawing.Point(342, 441);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(158, 80);
+            this.panel4.TabIndex = 9;
+            // 
+            // tenPoundNote
+            // 
+            this.tenPoundNote.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tenPoundNote.BackgroundImage")));
+            this.tenPoundNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tenPoundNote.Controls.Add(this.twentyPoundNote);
+            this.tenPoundNote.Location = new System.Drawing.Point(16, 17);
+            this.tenPoundNote.Name = "tenPoundNote";
+            this.tenPoundNote.Size = new System.Drawing.Size(124, 59);
+            this.tenPoundNote.TabIndex = 8;
+            // 
+            // twentyPoundNote
+            // 
+            this.twentyPoundNote.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("twentyPoundNote.BackgroundImage")));
+            this.twentyPoundNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.twentyPoundNote.Location = new System.Drawing.Point(0, 0);
+            this.twentyPoundNote.Name = "twentyPoundNote";
+            this.twentyPoundNote.Size = new System.Drawing.Size(124, 59);
+            this.twentyPoundNote.TabIndex = 8;
             // 
             // buttonZero
             // 
@@ -470,6 +505,8 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.tenPoundNote.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -503,6 +540,9 @@
         private System.Windows.Forms.Button buttonZero;
         private System.Windows.Forms.TextBox textBoxUserPromptRight;
         private System.Windows.Forms.TextBox textBoxPageTitle;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel tenPoundNote;
+        private System.Windows.Forms.Panel twentyPoundNote;
     }
 }
 

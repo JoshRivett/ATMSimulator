@@ -19,6 +19,8 @@ namespace ATMSimulation
         //Fields
         private ATM atm;
         private Account[] ac;
+        private Account sendToAccount;
+        private int amountToSend;
         private string state = "";
         private bool dataRace;
         //private Button[] keyPad = new Button[10];
@@ -35,6 +37,9 @@ namespace ATMSimulation
             atm = new ATM(ac);
             state = "account select";
             this.dataRace = dataRace;
+
+            tenPoundNote.Visible = false;
+            twentyPoundNote.Visible = false;
 
             //Initialises form elements
             textBoxPageTitle.Text = "ATM";
@@ -310,6 +315,29 @@ namespace ATMSimulation
                     }
                     state = "other";
                 }
+
+                //Checks if the program is on the account selection screen
+                else if (state == "transfer money")
+                {
+
+                    //Attempts to find the entered account number
+                    sendToAccount = atm.findAccount(textBoxUserInput.Text);
+
+                    //If account was found, the program moves on to pin entry
+                    if (atm.getActiveAccount() != null)
+                    {
+                        textBoxUserPromptLeft.Clear();
+                        textBoxUserPromptRight.Clear();
+
+                        textBoxPageTitle.Clear();
+                        textBoxPageTitle.Text = "Transfer Money";
+
+                        textBoxUserPromptLeft.Text = "Transfer to " + sendToAccount.getAccountNum().ToString();
+                        state = "confirm";
+                        dipConfimation();
+                    }
+
+                }
                 //Checks if the program is waiting for the user to press enter
                 else if (state == "other")
                 {
@@ -338,6 +366,9 @@ namespace ATMSimulation
         /// </summary>
         public void dispOptions()
         {
+            tenPoundNote.Visible = false;
+            twentyPoundNote.Visible = false;
+
             textBoxPageTitle.Clear();
             textBoxPageTitle.Text = "ATM";
 
@@ -412,6 +443,18 @@ namespace ATMSimulation
                                         "3> 500" + Environment.NewLine;
 
             */
+        }
+
+        public void dipConfimation()
+        {
+            textBoxPageTitle.Clear();
+            textBoxPageTitle.Text = "Confirm Account";
+
+            textBoxUserPromptLeft.Clear();
+            textBoxUserPromptRight.Clear();
+            textBoxUserPromptLeft.Text += "< yes" + Environment.NewLine; //wihtdraw button
+            textBoxUserPromptLeft.Text += " " + Environment.NewLine;
+            textBoxUserPromptLeft.Text += "< no" + Environment.NewLine; //deposit button
         }
 
         /// <summary>
@@ -526,7 +569,10 @@ namespace ATMSimulation
                     textBoxPageTitle.Text = "ATM";
 
                     textBoxUserPromptLeft.Text = "£10" + " successfully deposited." + Environment.NewLine;
+                    textBoxUserPromptLeft.Text = "Remember to Take your money!" + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
+
                     state = "other";
                 }
                 else
@@ -551,6 +597,10 @@ namespace ATMSimulation
 
                     textBoxUserPromptLeft.Text = "£10" + " successfully withdrawn." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
+                    //show note
+                    tenPoundNote.Visible = true;
+
                     state = "other";
                 }
                 else
@@ -562,6 +612,27 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
                 }
+            }
+            else if (this.state == "transfer money")
+            {
+                state = "account select";
+
+                amountToSend = 10;
+
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
+
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
+                textBoxUserPromptRight.Text = "Enter account number:";
+
+            }else if (state == "confirm")
+            {
+                //transfer money
+                atm.getActiveAccount().decrementBalance(amountToSend, dataRace);
+
+                sendToAccount.decrementBalance(-amountToSend, dataRace);
+                
             }
             else if (state == "main menu")
             {
@@ -614,6 +685,10 @@ namespace ATMSimulation
 
                     textBoxUserPromptLeft.Text = "£20" + " successfully withdrawn." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
+                    //show note
+                    twentyPoundNote.Visible = true;
+
                     state = "other";
                 }
                 else
@@ -651,6 +726,7 @@ namespace ATMSimulation
 
                     textBoxUserPromptLeft.Text = "£30" + " successfully deposited." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
                     state = "other";
                 }
                 else
@@ -674,6 +750,10 @@ namespace ATMSimulation
 
                     textBoxUserPromptLeft.Text = "£30" + " successfully withdrawn." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
+                    //show note
+                    tenPoundNote.Visible = true;
+
                     state = "other";
                 }
                 else
@@ -685,6 +765,12 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
                 }
+            }
+            else if (state == "confirm")
+            {
+                //do nothing
+                state = "main menu";
+                dispOptions();
             }
             else if (state == "main menu")
             {
@@ -736,6 +822,10 @@ namespace ATMSimulation
 
                     textBoxUserPromptLeft.Text = "£40" + " successfully withdrawn." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
+                    //show note
+                    twentyPoundNote.Visible = true;
+
                     state = "other";
                 }
                 else
