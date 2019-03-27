@@ -515,6 +515,9 @@ namespace ATMSimulation
 
         private void buttonWithdrawCash_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account holder chose Withdraw Option" + Environment.NewLine;
+
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-10, dataRace) == true)
@@ -577,6 +580,8 @@ namespace ATMSimulation
 
         private void buttonViewBalance_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account holder viewed balance" + Environment.NewLine;
 
             if (state == "deposit menu")
             {
@@ -639,6 +644,8 @@ namespace ATMSimulation
 
         private void buttonDepositMoney_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account Holder has chosen to deposit Money." + Environment.NewLine;
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-30, dataRace) == true)
@@ -700,6 +707,9 @@ namespace ATMSimulation
 
         private void buttonTransferMoney_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account holder has chosen the transfer money option." + Environment.NewLine;
+
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-40, dataRace) == true)
@@ -760,6 +770,9 @@ namespace ATMSimulation
 
         private void buttonSwitchAccount_Click(object sender, EventArgs e)
         {
+            //updates log
+            textBoxLogInfo.Text += this.Name.ToString() + "Account Holder has chosen to switch accounts." + Environment.NewLine;
+
             if (this.state == "deposit menu")
             {
                 if (atm.getActiveAccount().decrementBalance(-50, dataRace) == true)
