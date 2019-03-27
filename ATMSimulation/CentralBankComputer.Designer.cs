@@ -109,6 +109,7 @@
             this.buttonResetSimulation.TabIndex = 8;
             this.buttonResetSimulation.Text = "Reset Simulation";
             this.buttonResetSimulation.UseVisualStyleBackColor = false;
+            this.buttonResetSimulation.Click += new System.EventHandler(this.buttonResetSimulation_Click);
             // 
             // panel2
             // 
@@ -164,6 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1258, 1022);
             this.Controls.Add(this.checkBoxBarrier);
