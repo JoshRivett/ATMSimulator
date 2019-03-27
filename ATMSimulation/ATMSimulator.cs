@@ -311,7 +311,8 @@ namespace ATMSimulation
                         textBoxUserPromptLeft.Text = "Transfer to " + sendToAccount.getAccountNum().ToString();
                         state = "confirm";
                         dipConfimation();
-                    }else
+                    }
+                    else
                     {
                         dispOptions();
                         state = "main menu";
@@ -572,6 +573,10 @@ namespace ATMSimulation
                     tenPoundNote.Visible = true;
 
                     state = "other";
+
+                    //Updates log
+                    updateLog("Withdrew £10.");
+                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
                 }
                 //Otherwise, displays an error message
                 else
@@ -645,6 +650,10 @@ namespace ATMSimulation
                 textBoxUserPromptLeft.Text = "£20" + " successfully deposited." + Environment.NewLine;
                 textBoxUserPromptRight.Text = "Press enter to continue...";
                 state = "other";
+
+                //Updates log
+                updateLog("Deposited £20.");
+                updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
             }
             //Checks if the program is on the withdraw menu
             else if (state == "withdraw menu")
@@ -665,6 +674,10 @@ namespace ATMSimulation
                     twentyPoundNote.Visible = true;
 
                     state = "other";
+
+                    //Updates log
+                    updateLog("Withdrew £20.");
+                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
                 }
                 //Otherwise, display an error message
                 else
@@ -725,6 +738,10 @@ namespace ATMSimulation
                 textBoxUserPromptRight.Text = "Press enter to continue...";
 
                 state = "other";
+
+                //Updates log
+                updateLog("Deposited £30.");
+                updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
             }
             //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
@@ -745,6 +762,10 @@ namespace ATMSimulation
                     tenPoundNote.Visible = true;
 
                     state = "other";
+
+                    //Updates log
+                    updateLog("Withdrew £30.");
+                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
                 }
                 //Otherwise, display an error message
                 else
@@ -811,6 +832,10 @@ namespace ATMSimulation
                 textBoxUserPromptLeft.Text = "£40" + " successfully deposited." + Environment.NewLine;
                 textBoxUserPromptRight.Text = "Press enter to continue...";
                 state = "other";
+
+                //Updates log
+                updateLog("Deposited £40.");
+                updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
             }
             //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
@@ -831,6 +856,10 @@ namespace ATMSimulation
                     twentyPoundNote.Visible = true;
 
                     state = "other";
+
+                    //Updates log
+                    updateLog("Withdrew £40.");
+                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
                 }
                 //Otherwise, display an error message
                 else
@@ -889,6 +918,10 @@ namespace ATMSimulation
                 textBoxUserPromptLeft.Text = "£50" + " successfully deposited." + Environment.NewLine;
                 textBoxUserPromptRight.Text = "Press enter to continue...";
                 state = "other";
+
+                //Updates log
+                updateLog("Deposited £50.");
+                updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
             }
             //Checks if the program is on the withdraw menu
             else if (this.state == "withdraw menu")
@@ -905,6 +938,10 @@ namespace ATMSimulation
                     textBoxUserPromptLeft.Text = "£50" + " successfully withdrawn." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
+
+                    //Updates log
+                    updateLog("Withdrew £50.");
+                    updateLog("Current balance: £" + atm.getActiveAccount().getBalance().ToString());
                 }
                 //Otherwise, display an error message
                 else
@@ -929,7 +966,7 @@ namespace ATMSimulation
             else if (state == "main menu")
             {
                 logOut();
-                state = "other";
+                //state = "other";
 
                 //Updates log
                 updateLog("Selected switch account.");
