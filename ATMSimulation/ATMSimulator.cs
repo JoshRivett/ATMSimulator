@@ -18,9 +18,10 @@ namespace ATMSimulation
     {
         //Fields
         private ATM atm;
-        private Button[] keyPad = new Button[10];
         private Account[] ac;
         private string state = "";
+        private bool dataRace;
+        //private Button[] keyPad = new Button[10];
 
         /// <summary>
         /// Constructor method for the ATMSimulator form.
@@ -28,12 +29,18 @@ namespace ATMSimulation
         public ATMSimulator(Account[] ac, int ATMNum, Boolean dataRace)
         {
             InitializeComponent();
+
+            //Initialises fields
             this.ac = ac;
             atm = new ATM(ac);
-
             state = "account select";
+            this.dataRace = dataRace;
+
+            //Initialises form elements
             textBoxPageTitle.Text = "ATM";
             textBoxUserPromptLeft.Text = "Enter account number:";
+            richTextBox3.Text = "ATM Simulator " + ATMNum;
+            richTextBox6.Text = "ATM " + ATMNum + " Activity Log:";
 
             //CentralBankComputer bank = new CentralBankComputer();
             //button initialisation
@@ -61,85 +68,163 @@ namespace ATMSimulation
                 }
             }
             */
-
         }
 
+        /// <summary>
+        /// Event handler for the exit program button.
+        /// Ends the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitProgram_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
         }
 
+        /// <summary>
+        /// Event handler for button zero.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonZero_Click(object sender, EventArgs e)
         {
             textBoxUserInput.Text += buttonZero.Text;
         }
 
-        private void buttonNine_Click(object sender, EventArgs e)
-        {
-            textBoxUserInput.Text += buttonNine.Text;
-        }
-
-        private void buttonTwo_Click(object sender, EventArgs e)
-        {
-            textBoxUserInput.Text += buttonTwo.Text;
-        }
-
-        private void buttonThree_Click(object sender, EventArgs e)
-        {
-            textBoxUserInput.Text += buttonThree.Text;
-        }
-
-        private void buttonSix_Click(object sender, EventArgs e)
-        {
-            textBoxUserInput.Text += buttonSix.Text;
-        }
-
-        private void buttonFive_Click(object sender, EventArgs e)
-        {
-            textBoxUserInput.Text += buttonFive.Text;
-        }
-
-        private void buttonFour_Click(object sender, EventArgs e)
-        {
-            textBoxUserInput.Text += buttonFour.Text;
-        }
-
+        /// <summary>
+        /// Event handler for button one.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOne_Click(object sender, EventArgs e)
         {
             textBoxUserInput.Text += buttonOne.Text;
         }
 
+        /// <summary>
+        /// Event handler for button two.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonTwo_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text += buttonTwo.Text;
+        }
+
+        /// <summary>
+        /// Event handler for button three.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonThree_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text += buttonThree.Text;
+        }
+
+        /// <summary>
+        /// Event handler for button four.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonFour_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text += buttonFour.Text;
+        }
+
+        /// <summary>
+        /// Event handler for button five.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonFive_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text += buttonFive.Text;
+        }
+
+        /// <summary>
+        /// Event handler for button six.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSix_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text += buttonSix.Text;
+        }
+
+        /// <summary>
+        /// Event handler for button seven.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSeven_Click(object sender, EventArgs e)
         {
             textBoxUserInput.Text += buttonSeven.Text;
         }
 
+        /// <summary>
+        /// Event handler for button eight.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEight_Click(object sender, EventArgs e)
         {
             textBoxUserInput.Text += buttonEight.Text;
         }
 
+        /// <summary>
+        /// Event handler for button nine.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonNine_Click(object sender, EventArgs e)
+        {
+            textBoxUserInput.Text += buttonNine.Text;
+        }
+
+        /// <summary>
+        /// Event handler for the clear button.
+        /// Clears the user input box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBoxUserInput.Text = "";
         }
 
+        /// <summary>
+        /// Event handler for the delete button.
+        /// Deletes the last character from the user input box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            //Makes sure the text box isn't empty
             if (textBoxUserInput.Text.Length > 0)
             {
                 textBoxUserInput.Text = textBoxUserInput.Text.Remove(textBoxUserInput.Text.Length - 1);
             }
         }
 
+        /// <summary>
+        /// Event handler for the enter button.
+        /// Reacts differently depending on the state of the program, creating the main control flow.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEnter_Click(object sender, EventArgs e)
         {
+            //Makes sure that a value has been entered (or the program is expecting enter to be pressed)
             if (textBoxUserInput.Text != "" || state == "other")
             {
+                //Checks if the program is on the account selection screen
                 if (state == "account select")
                 {
+                    //Attempts to find the entered account number
                     atm.setActiveAccount(atm.findAccount(textBoxUserInput.Text));
 
+                    //If account was found, the program moves on to pin entry
                     if (atm.getActiveAccount() != null)
                     {
                         textBoxUserPromptLeft.Clear();
@@ -148,27 +233,29 @@ namespace ATMSimulation
                         textBoxPageTitle.Clear();
                         textBoxPageTitle.Text = "ATM";
 
-                        
-
                         textBoxUserPromptLeft.Text = "Login to " + atm.getActiveAccount().getAccountNum().ToString();
                         state = "pin entry";
                     }
 
                 }
+                //Checks if the program is on the pin entry screen
                 else if (state == "pin entry")
                 {
+                    //If the correct pin was entered, the program switches to the main menu
                     if (atm.getActiveAccount().checkPin(Convert.ToInt32(textBoxUserInput.Text)) == true)
                     {
-                        state = "main menu";
                         dispOptions();
                     }
+                    //Otherwise, the user is prompted to try again
                     else
                     {
                         textBoxUserPromptLeft.Text = "Incorrect pin code";
                     }
                 }
+                //Checks if the program is on the main menu screen
                 else if (state == "main menu")
                 {
+                    //Executes the method corresponding to the user's input
                     switch (Convert.ToInt32(textBoxUserInput.Text))
                     {
                         case 1:
@@ -182,8 +269,10 @@ namespace ATMSimulation
                             break;
                     }
                 }
+                //Checks if the program is on the withdraw menu
                 else if (state == "withdraw menu")
                 {
+                    //Attempts to withdraw cash based on the user's input
                     int amount = 0;
                     switch (Convert.ToInt32(textBoxUserInput.Text))
                     {
@@ -197,7 +286,9 @@ namespace ATMSimulation
                             amount = 500;
                             break;
                     }
-                    if (atm.getActiveAccount().decrementBalance(amount) == true)
+
+                    //If the withdrawal was successful, the amount taken out is printed to the screen
+                    if (atm.getActiveAccount().decrementBalance(amount, dataRace) == true)
                     {
                         textBoxUserPromptLeft.Clear();
                         textBoxUserPromptRight.Clear();
@@ -208,6 +299,7 @@ namespace ATMSimulation
                         textBoxUserPromptLeft.Text = "£" + amount.ToString() + " successfully withdrawn." + Environment.NewLine;
                         textBoxUserPromptRight.Text = "Press enter to continue...";
                     }
+                    //Otherwise, and error message is displayed
                     else
                     {
                         textBoxPageTitle.Clear();
@@ -218,11 +310,13 @@ namespace ATMSimulation
                     }
                     state = "other";
                 }
+                //Checks if the program is waiting for the user to press enter
                 else if (state == "other")
                 {
-                    state = "main menu";
+                    //Returns to the main menu
                     dispOptions();
                 }
+                //Otherwise, a state has not been accounted for and a debug message is displayed
                 else
                 {
 
@@ -235,16 +329,15 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Missing state: " + state;
                 }
             }
+            //Clears the input box
             textBoxUserInput.Text = "";
         }
 
         /// <summary>
-        /// Displays menu options, prompts the user for an option, and executes the 
-        /// corresponding method.
+        /// Displays the main menu options.
         /// </summary>
         public void dispOptions()
         {
-
             textBoxPageTitle.Clear();
             textBoxPageTitle.Text = "ATM";
 
@@ -260,17 +353,14 @@ namespace ATMSimulation
             textBoxUserPromptRight.Text += " " + Environment.NewLine;
             textBoxUserPromptRight.Text += "< Switch Account" + Environment.NewLine;
 
-            /*
-            textBoxUserPromptLeft.Text =    "1> take out cash" + Environment.NewLine + 
-                                        "2> balance" + Environment.NewLine + 
-                                        "3> exit";
-
-            */
+            state = "main menu";
         }
 
+        /// <summary>
+        /// Prompts the user to select an amount of cash to withdraw, then presents menu options.
+        /// </summary>
         public void withdrawCash()
         {
-
             textBoxPageTitle.Clear();
             textBoxPageTitle.Text = "Select Amount:";
 
@@ -324,9 +414,11 @@ namespace ATMSimulation
             */
         }
 
+        /// <summary>
+        /// Displays the current balance of the active account and then waits for the user to press enter.
+        /// </summary>
         public void displayBalance()
         {
-
             textBoxPageTitle.Clear();
             textBoxPageTitle.Text = "ATM";
 
@@ -344,6 +436,9 @@ namespace ATMSimulation
             */
         }
 
+        /// <summary>
+        /// Returns to the initial login screen.
+        /// </summary>
         public void logOut()
         {
             state = "account select";
@@ -356,6 +451,9 @@ namespace ATMSimulation
             textBoxUserPromptRight.Text = "Enter account number:";
         }
 
+        /// <summary>
+        /// Displays options for transferring cash to another account.
+        /// </summary>
         public void transferMoney()
         {
             state = "transfer money";
@@ -376,14 +474,13 @@ namespace ATMSimulation
             textBoxUserPromptRight.Text += "< £50" + Environment.NewLine; //switch account button
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Adds information to the log based on the parameter given.
+        /// </summary>
+        /// <param name="updateInfo">Information to be added to the log.</param>
         public void updateLog(string updateInfo)
         {
-            //Text box concatinate new log
+            //Text box concatenate new log
             textBoxLogInfo.Text += updateInfo + Environment.NewLine;
             textBoxLogInfo.SelectionStart = textBoxLogInfo.TextLength;
             textBoxLogInfo.ScrollToCaret();
@@ -728,11 +825,10 @@ namespace ATMSimulation
     /// </summary>
     public class Account
     {
-        //the attributes for the account
+        //Fields
         private int balance;
         private int pin;
         private int accountNum;
-        static Barrier barrier = new Barrier(participantCount: 2);
 
         /// <summary>
         /// Constructor method for accounts.
@@ -770,20 +866,45 @@ namespace ATMSimulation
         /// </summary>
         /// <param name="amount">The amount of money to be withdrawn</param>
         /// <returns>Returns true if successful, false if not</returns>
-        public Boolean decrementBalance(int amount)
+        public Boolean decrementBalance(int amount, bool dataRace)
         {
-            if (this.balance > amount)
+            //Checks if the data race is to be solved
+            if (dataRace == false)
             {
-                barrier.SignalAndWait();
-                int temp;
-                //Semaphore here?
-                balance -= amount;
-                //Release semaphore here.
-                return true;
+                if (this.balance > amount)
+                {
+                    int temp;
+
+                    CentralBankComputer.barrier.SignalAndWait();
+
+                    CentralBankComputer.semaphore.WaitOne();
+                    temp = balance;
+                    temp -= amount;
+                    balance = temp;
+                    CentralBankComputer.semaphore.Release();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+            //Otherwise, cause the data race to occur
             else
             {
-                return false;
+                if (this.balance > amount)
+                {
+                    int temp;
+                    temp = balance;
+                    temp -= amount;
+                    CentralBankComputer.barrier.SignalAndWait();
+                    balance = temp;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -820,10 +941,10 @@ namespace ATMSimulation
     /// </summary>
     class ATM
     {
-        //local referance to the array of accounts
+        //Local reference to the array of accounts
         private Account[] ac;
 
-        //this is a referance to the account that is being used
+        //This is a referance to the account that is being used
         private Account activeAccount = null;
 
         /// <summary>
@@ -833,35 +954,6 @@ namespace ATMSimulation
         public ATM(Account[] ac)
         {
             this.ac = ac;
-            /*
-            // an infanite loop to keep the flow of controll going on and on 
-            while (true)
-            {
-
-                //ask for account number and store result in acctiveAccount (null if no match found)
-                activeAccount = this.findAccount();
-                
-
-                if (activeAccount != null)
-                {
-
-                    //if the account is found check the pin 
-                    if (activeAccount.checkPin(this.promptForPin()))
-                    {
-                        //if the pin is a match give the options to do stuff to the account (take money out, view balance, exit)
-                        dispOptions();
-                    }
-
-                }
-                else
-                {   //if the account number entered is not found let the user know!
-                    //Console.WriteLine("no matching account found.");
-                }
-
-                //wipes all text from the console
-                //Console.Clear();
-            }
-            */
         }
 
         /// <summary>
@@ -873,6 +965,10 @@ namespace ATMSimulation
             activeAccount = ac;
         }
 
+        /// <summary>
+        /// Getter method for getting the current active account.
+        /// </summary>
+        /// <returns>The current active account</returns>
         public Account getActiveAccount()
         {
             return activeAccount;
@@ -884,12 +980,9 @@ namespace ATMSimulation
         /// <returns>Returns the corresponding account if it exists, otherwise returns null</returns>
         public Account findAccount(string input)
         {
-
-
-            Console.WriteLine("enter your account number..");
-            
             int accountNum = Convert.ToInt32(input);
 
+            //Loops through each account and checks if its account number matches the one entered by the user
             for (int i = 0; i < this.ac.Length; i++)
             {
                 if (ac[i].getAccountNum() == accountNum)
@@ -898,24 +991,8 @@ namespace ATMSimulation
                 }
             }
             
+            //Otherwise, the account doesn't exist and null is returned
             return null;
-        }
-
-
-        /// <summary>
-        /// Displays the balance of the current account.
-        /// </summary>
-        public void dispBalance()
-        {
-            if (this.activeAccount != null)
-            {
-
-
-
-                Console.WriteLine(" your current balance is : " + activeAccount.getBalance());
-                Console.WriteLine(" (prese enter to continue)");
-                Console.ReadLine();
-            }
         }
     }
 }
