@@ -290,7 +290,7 @@ namespace ATMSimulation
                 }
 
                 //Checks if the program is on the account selection screen
-                else if (state == "transfer money")
+                else if (state == "account select transfer")
                 {
 
                     //Attempts to find the entered account number
@@ -308,6 +308,10 @@ namespace ATMSimulation
                         textBoxUserPromptLeft.Text = "Transfer to " + sendToAccount.getAccountNum().ToString();
                         state = "confirm";
                         dipConfimation();
+                    }else
+                    {
+                        dispOptions();
+                        state = "main menu";
                     }
 
                 }
@@ -416,6 +420,8 @@ namespace ATMSimulation
             textBoxUserPromptLeft.Text += "< yes" + Environment.NewLine; //wihtdraw button
             textBoxUserPromptLeft.Text += " " + Environment.NewLine;
             textBoxUserPromptLeft.Text += "< no" + Environment.NewLine; //deposit button
+
+            state = "confirm";
         }
 
         /// <summary>
@@ -589,7 +595,7 @@ namespace ATMSimulation
             }
             else if (this.state == "transfer money")
             {
-                state = "account select";
+                state = "account select transfer";
 
                 amountToSend = 10;
 
@@ -606,6 +612,10 @@ namespace ATMSimulation
                 atm.getActiveAccount().decrementBalance(amountToSend, dataRace);
 
                 sendToAccount.decrementBalance(-amountToSend, dataRace);
+
+                //return to main menu
+                dispOptions();
+                state = "main menu";
                 
             }
             //Checks if the program is on the main menu, and then executes the appropriate method
@@ -685,6 +695,20 @@ namespace ATMSimulation
                     state = "other";
                 }
             }
+            else if (this.state == "transfer money")
+            {
+                state = "account select transfer";
+
+                amountToSend = 20;
+
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
+
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
+                textBoxUserPromptRight.Text = "Enter account number:";
+
+            }
             else if (state == "main menu")
             {
                 displayBalance();
@@ -757,6 +781,20 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
                 }
+            }
+            else if (this.state == "transfer money")
+            {
+                state = "account select transfer";
+
+                amountToSend = 30;
+
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
+
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
+                textBoxUserPromptRight.Text = "Enter account number:";
+
             }
             else if (state == "confirm")
             {
@@ -839,6 +877,20 @@ namespace ATMSimulation
                     state = "other";
                 }
             }
+            else if (this.state == "transfer money")
+            {
+                state = "account select transfer";
+
+                amountToSend = 40;
+
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
+
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
+                textBoxUserPromptRight.Text = "Enter account number:";
+
+            }
             else if (state == "main menu")
             {
                 transferMoney();
@@ -908,6 +960,20 @@ namespace ATMSimulation
                     textBoxUserPromptRight.Text = "Press enter to continue...";
                     state = "other";
                 }
+            }
+            else if (this.state == "transfer money")
+            {
+                state = "account select transfer";
+
+                amountToSend = 50;
+
+                textBoxPageTitle.Clear();
+                textBoxPageTitle.Text = "ATM";
+
+                textBoxUserPromptLeft.Clear();
+                textBoxUserPromptRight.Clear();
+                textBoxUserPromptRight.Text = "Enter account number:";
+
             }
             else if (state == "main menu")
             {
