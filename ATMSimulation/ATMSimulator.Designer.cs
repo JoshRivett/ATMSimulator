@@ -387,7 +387,6 @@
             this.textBoxPageTitle.Size = new System.Drawing.Size(470, 46);
             this.textBoxPageTitle.TabIndex = 0;
             this.textBoxPageTitle.Text = "ATM";
-            this.textBoxPageTitle.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBoxUserPromptLeft
             // 
@@ -402,7 +401,6 @@
             this.textBoxUserPromptLeft.ReadOnly = true;
             this.textBoxUserPromptLeft.Size = new System.Drawing.Size(252, 177);
             this.textBoxUserPromptLeft.TabIndex = 0;
-            this.textBoxUserPromptLeft.TextChanged += new System.EventHandler(this.textBoxUserPromptLeft_TextChanged);
             // 
             // textBoxUserInput
             // 
