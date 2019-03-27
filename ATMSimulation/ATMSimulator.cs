@@ -300,7 +300,7 @@ namespace ATMSimulation
                     sendToAccount = atm.findAccount(textBoxUserInput.Text);
 
                     //If account was found, the program moves on to pin entry
-                    if (atm.getActiveAccount() != null)
+                    if (sendToAccount != null)
                     {
                         textBoxUserPromptLeft.Clear();
                         textBoxUserPromptRight.Clear();
@@ -313,6 +313,11 @@ namespace ATMSimulation
                         dipConfimation();
                     }else
                     {
+                        textBoxUserPromptLeft.Clear();
+                        textBoxUserPromptRight.Clear();
+
+                        textBoxUserPromptLeft.Text = "Incorrect pin, returning to main menu";
+
                         dispOptions();
                         state = "main menu";
                     }
@@ -347,6 +352,9 @@ namespace ATMSimulation
         {
             tenPoundNote.Visible = false;
             twentyPoundNote.Visible = false;
+
+            tenPoundNote.Height = 1;
+            twentyPoundNote.Height = 1;
 
             textBoxPageTitle.Clear();
             textBoxPageTitle.Text = "ATM";
@@ -584,6 +592,12 @@ namespace ATMSimulation
                     //show note
                     tenPoundNote.Visible = true;
 
+                    while (tenPoundNote.Height < 60)
+                    {
+                        tenPoundNote.Height = tenPoundNote.Height + 1;
+                        Thread.Sleep(1);
+                    }
+
                     state = "other";
                 }
                 //Otherwise, displays an error message
@@ -687,6 +701,12 @@ namespace ATMSimulation
                     //show note
                     twentyPoundNote.Visible = true;
 
+                    while (twentyPoundNote.Height < 60)
+                    {
+                        twentyPoundNote.Height = twentyPoundNote.Height + 1;
+                        Thread.Sleep(1);
+                    }
+
                     state = "other";
                 }
                 else
@@ -775,6 +795,12 @@ namespace ATMSimulation
 
                     //show note
                     tenPoundNote.Visible = true;
+
+                    while (tenPoundNote.Height < 60)
+                    {
+                        tenPoundNote.Height = tenPoundNote.Height + 1;
+                        Thread.Sleep(1);
+                    }
 
                     state = "other";
                 }
@@ -871,6 +897,12 @@ namespace ATMSimulation
                     //show note
                     twentyPoundNote.Visible = true;
 
+                    while (twentyPoundNote.Height < 60)
+                    {
+                        twentyPoundNote.Height = twentyPoundNote.Height + 1;
+                        Thread.Sleep(1);
+                    }
+
                     state = "other";
                 }
                 else
@@ -955,6 +987,16 @@ namespace ATMSimulation
 
                     textBoxUserPromptLeft.Text = "£50" + " successfully withdrawn." + Environment.NewLine;
                     textBoxUserPromptRight.Text = "Press enter to continue...";
+
+                    //show note
+                    twentyPoundNote.Visible = true;
+
+                    while (twentyPoundNote.Height < 60)
+                    {
+                        twentyPoundNote.Height = twentyPoundNote.Height + 1;
+                        Thread.Sleep(1);
+                    }
+
                     state = "other";
                 }
                 else
@@ -984,7 +1026,6 @@ namespace ATMSimulation
             else if (state == "main menu")
             {
                 logOut();
-                state = "other";
 
                 //Updates log
                 updateLog("Selected switch account.");

@@ -447,7 +447,7 @@
             this.tenPoundNote.Controls.Add(this.twentyPoundNote);
             this.tenPoundNote.Location = new System.Drawing.Point(16, 17);
             this.tenPoundNote.Name = "tenPoundNote";
-            this.tenPoundNote.Size = new System.Drawing.Size(124, 59);
+            this.tenPoundNote.Size = new System.Drawing.Size(124, 1);
             this.tenPoundNote.TabIndex = 8;
             // 
             // twentyPoundNote
@@ -456,7 +456,7 @@
             this.twentyPoundNote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.twentyPoundNote.Location = new System.Drawing.Point(0, 0);
             this.twentyPoundNote.Name = "twentyPoundNote";
-            this.twentyPoundNote.Size = new System.Drawing.Size(124, 59);
+            this.twentyPoundNote.Size = new System.Drawing.Size(124, 1);
             this.twentyPoundNote.TabIndex = 8;
             // 
             // buttonZero
