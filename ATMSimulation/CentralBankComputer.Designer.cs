@@ -36,6 +36,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBoxLogInfo = new System.Windows.Forms.TextBox();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
+            this.checkBoxBarrier = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,12 +138,23 @@
             this.richTextBox6.Text = "Central Bank Computer Activity Log:";
             this.richTextBox6.WordWrap = false;
             // 
+            // checkBoxBarrier
+            // 
+            this.checkBoxBarrier.AutoSize = true;
+            this.checkBoxBarrier.Location = new System.Drawing.Point(360, 292);
+            this.checkBoxBarrier.Name = "checkBoxBarrier";
+            this.checkBoxBarrier.Size = new System.Drawing.Size(92, 17);
+            this.checkBoxBarrier.TabIndex = 11;
+            this.checkBoxBarrier.Text = "Enable Barrier";
+            this.checkBoxBarrier.UseVisualStyleBackColor = true;
+            // 
             // CentralBankComputer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(839, 664);
+            this.Controls.Add(this.checkBoxBarrier);
             this.Controls.Add(this.richTextBox6);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.buttonResetSimulation);
@@ -152,10 +164,11 @@
             this.Controls.Add(this.buttonDataRaceSuccess);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CentralBankComputer";
-            this.Text = "CentralBankComputer";
+            this.Text = "ATM Simulator";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -168,5 +181,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBoxLogInfo;
         private System.Windows.Forms.RichTextBox richTextBox6;
+        private System.Windows.Forms.CheckBox checkBoxBarrier;
     }
 }

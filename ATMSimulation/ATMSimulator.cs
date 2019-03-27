@@ -146,7 +146,7 @@ namespace ATMSimulation
                         textBoxUserPromptRight.Clear();
 
                         textBoxPageTitle.Clear();
-                        textBoxPageTitle.Text = "Select Amount:";
+                        textBoxPageTitle.Text = "ATM";
 
                         
 
@@ -164,7 +164,7 @@ namespace ATMSimulation
                     }
                     else
                     {
-                        textBoxUserPromptRight.Text = "Incorrect pin code";
+                        textBoxUserPromptLeft.Text = "Incorrect pin code";
                     }
                 }
                 else if (state == "main menu")
@@ -199,13 +199,22 @@ namespace ATMSimulation
                     }
                     if (atm.getActiveAccount().decrementBalance(amount) == true)
                     {
-                        textBoxUserPromptRight.Text =     amount.ToString() + " successfully withdrawn." + Environment.NewLine +
-                                                    "Press enter to continue...";
+                        textBoxUserPromptLeft.Clear();
+                        textBoxUserPromptRight.Clear();
+
+                        textBoxPageTitle.Clear();
+                        textBoxPageTitle.Text = "ATM";
+
+                        textBoxUserPromptLeft.Text = "£" + amount.ToString() + " successfully withdrawn." + Environment.NewLine;
+                        textBoxUserPromptRight.Text = "Press enter to continue...";
                     }
                     else
                     {
-                        textBoxUserPromptRight.Text =    "Insufficient funds." + Environment.NewLine +
-                                                    "Press enter to continue...";
+                        textBoxPageTitle.Clear();
+                        textBoxPageTitle.Text = "ATM";
+
+                        textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                        textBoxUserPromptRight.Text = "Press enter to continue...";
                     }
                     state = "other";
                 }
@@ -216,6 +225,13 @@ namespace ATMSimulation
                 }
                 else
                 {
+
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
                     textBoxUserPromptRight.Text = "Missing state: " + state;
                 }
             }
@@ -233,6 +249,7 @@ namespace ATMSimulation
             textBoxPageTitle.Text = "ATM";
 
             textBoxUserPromptLeft.Clear();
+            textBoxUserPromptRight.Clear();
             textBoxUserPromptLeft.Text += "< Withdraw" + Environment.NewLine;
             textBoxUserPromptLeft.Text += " " + Environment.NewLine;
             textBoxUserPromptLeft.Text += "< Deposit" + Environment.NewLine;
@@ -259,17 +276,45 @@ namespace ATMSimulation
 
             textBoxUserPromptLeft.Clear();
             textBoxUserPromptRight.Clear();
-            textBoxUserPromptLeft.Text += "< 10" + Environment.NewLine; //wihtdraw button
+            textBoxUserPromptLeft.Text += "< £10" + Environment.NewLine; //wihtdraw button
             textBoxUserPromptLeft.Text += " " + Environment.NewLine;
-            textBoxUserPromptLeft.Text += "< 30" + Environment.NewLine; //deposit button
+            textBoxUserPromptLeft.Text += "< £30" + Environment.NewLine; //deposit button
 
-            textBoxUserPromptRight.Text += "< 20" + Environment.NewLine; //withdraw button
+            textBoxUserPromptRight.Text += "< £20" + Environment.NewLine; //view balance button
             textBoxUserPromptRight.Text += " " + Environment.NewLine;
-            textBoxUserPromptRight.Text += "< 40" + Environment.NewLine; //transfer button
+            textBoxUserPromptRight.Text += "< £40" + Environment.NewLine; //transfer button
             textBoxUserPromptRight.Text += " " + Environment.NewLine;
-            textBoxUserPromptRight.Text += "< 50" + Environment.NewLine; //switch account button
+            textBoxUserPromptRight.Text += "< £50" + Environment.NewLine; //switch account button
 
-            state = "withdraw menu";
+            this.state = "withdraw menu";
+
+            /*
+            textBoxUserPromptRight.Text =    "1> 10" + Environment.NewLine +
+                                        "2> 50" + Environment.NewLine +
+                                        "3> 500" + Environment.NewLine;
+
+            */
+        }
+
+        public void depositCash()
+        {
+
+            textBoxPageTitle.Clear();
+            textBoxPageTitle.Text = "Select Amount:";
+
+            textBoxUserPromptLeft.Clear();
+            textBoxUserPromptRight.Clear();
+            textBoxUserPromptLeft.Text += "< £10" + Environment.NewLine; //wihtdraw button
+            textBoxUserPromptLeft.Text += " " + Environment.NewLine;
+            textBoxUserPromptLeft.Text += "< £30" + Environment.NewLine; //deposit button
+
+            textBoxUserPromptRight.Text += "< £20" + Environment.NewLine; //view balance button
+            textBoxUserPromptRight.Text += " " + Environment.NewLine;
+            textBoxUserPromptRight.Text += "< £40" + Environment.NewLine; //transfer button
+            textBoxUserPromptRight.Text += " " + Environment.NewLine;
+            textBoxUserPromptRight.Text += "< £50" + Environment.NewLine; //switch account button
+
+            this.state = "deposit menu";
 
             /*
             textBoxUserPromptRight.Text =    "1> 10" + Environment.NewLine +
@@ -289,20 +334,18 @@ namespace ATMSimulation
             textBoxUserPromptRight.Clear();
             textBoxUserPromptLeft.Text += "Current balance: " + atm.getActiveAccount().getBalance().ToString() + Environment.NewLine;
             textBoxUserPromptLeft.Text += " " + Environment.NewLine;
-            textBoxUserPromptLeft.Text += "Press enter to continue..." + Environment.NewLine;
+            textBoxUserPromptRight.Text += "Press enter to continue..." + Environment.NewLine;
 
             state = "other";
 
             /*
             textBoxUserPromptRight.Text =    "Current balance: " + atm.getActiveAccount().getBalance().ToString() + Environment.NewLine +
                                         "Press enter to continue...";
-
             */
         }
 
         public void logOut()
         {
-
             state = "account select";
 
             textBoxPageTitle.Clear();
@@ -315,21 +358,22 @@ namespace ATMSimulation
 
         public void transferMoney()
         {
+            state = "transfer money";
 
             textBoxPageTitle.Clear();
             textBoxPageTitle.Text = "Select Amount:";
 
             textBoxUserPromptLeft.Clear();
             textBoxUserPromptRight.Clear();
-            textBoxUserPromptLeft.Text += "< 10" + Environment.NewLine; //wihtdraw button
+            textBoxUserPromptLeft.Text += "< £10" + Environment.NewLine; //wihtdraw button
             textBoxUserPromptLeft.Text += " " + Environment.NewLine;
-            textBoxUserPromptLeft.Text += "< 30" + Environment.NewLine; //deposit button
+            textBoxUserPromptLeft.Text += "< £30" + Environment.NewLine; //deposit button
 
-            textBoxUserPromptRight.Text += "< 20" + Environment.NewLine; //withdraw button
+            textBoxUserPromptRight.Text += "< £20" + Environment.NewLine; //withdraw button
             textBoxUserPromptRight.Text += " " + Environment.NewLine;
-            textBoxUserPromptRight.Text += "< 40" + Environment.NewLine; //transfer button
+            textBoxUserPromptRight.Text += "< £40" + Environment.NewLine; //transfer button
             textBoxUserPromptRight.Text += " " + Environment.NewLine;
-            textBoxUserPromptRight.Text += "< 50" + Environment.NewLine; //switch account button
+            textBoxUserPromptRight.Text += "< £50" + Environment.NewLine; //switch account button
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -345,15 +389,338 @@ namespace ATMSimulation
             textBoxLogInfo.ScrollToCaret();
         }
 
+        //takes string, replaces existing string with new string
+        public void updateTextBoxUserPromptLeft(string newText)
+        {
+            textBoxUserPromptLeft.Text = newText;
+
+        }
+
+        //takes string, replaces existing string with new string
+        public void updateTextBoxUserPromptRight(string newText)
+        {
+            textBoxUserPromptRight.Text = newText;
+
+        }
+
+        //takes string, replaces existing string with new string
+        public void updateTextBoxPageTitle(string newText)
+        {
+            textBoxPageTitle.Text = newText;
+
+        }
+
+
         private void textBoxUserPromptLeft_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        //change the log text
-        /*
-            
-            */
+        private void buttonWithdrawCash_Click(object sender, EventArgs e)
+        {
+            if (this.state == "deposit menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(-10) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£10" + " successfully deposited." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (this.state == "withdraw menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(10) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£10" + " successfully withdrawn." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }else if (state == "main menu")
+            {
+                withdrawCash();
+                state = "other";
+            }else if (state == "other")
+            {
+                state = "main menu";
+                dispOptions();
+            }
+
+        }
+
+        private void buttonViewBalance_Click(object sender, EventArgs e)
+        {
+
+            if (state == "deposit menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(-20) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£20" + " successfully deposited." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (state == "withdraw menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(20) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£20" + " successfully withdrawn." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (state == "main menu")
+            {
+                displayBalance();
+                state = "other";
+            }else if (state == "other")
+            {
+                state = "main menu";
+                dispOptions();
+            }
+        }
+
+        private void buttonDepositMoney_Click(object sender, EventArgs e)
+        {
+            if (this.state == "deposit menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(-30) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£30" + " successfully deposited." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }else if (this.state == "withdraw menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(30) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£30" + " successfully withdrawn." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (state == "main menu")
+            {
+                depositCash();
+            }
+
+            if (state == "other")
+            {
+                state = "main menu";
+                dispOptions();
+            }
+        }
+
+        private void buttonTransferMoney_Click(object sender, EventArgs e)
+        {
+            if (this.state == "deposit menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(-40) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£40" + " successfully deposited." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (this.state == "withdraw menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(40) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£40" + " successfully withdrawn." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (state == "main menu")
+            {
+                transferMoney();
+            }else if (state == "other")
+            {
+                state = "main menu";
+                dispOptions();
+            }
+        }
+
+        private void buttonSwitchAccount_Click(object sender, EventArgs e)
+        {
+            if (this.state == "deposit menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(-50) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£50" + " successfully deposited." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (this.state == "withdraw menu")
+            {
+                if (atm.getActiveAccount().decrementBalance(50) == true)
+                {
+                    textBoxUserPromptLeft.Clear();
+                    textBoxUserPromptRight.Clear();
+
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "£50" + " successfully withdrawn." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+                else
+                {
+                    textBoxPageTitle.Clear();
+                    textBoxPageTitle.Text = "ATM";
+
+                    textBoxUserPromptLeft.Text = "Insufficient funds." + Environment.NewLine;
+                    textBoxUserPromptRight.Text = "Press enter to continue...";
+                    state = "other";
+                }
+            }
+            else if (state == "main menu")
+            {
+                logOut();
+                state = "other";
+            }
+            else if (state == "other")
+            {
+                state = "main menu";
+                dispOptions();
+            }
+        }
     }
 
     /// <summary>
@@ -466,7 +833,6 @@ namespace ATMSimulation
         public ATM(Account[] ac)
         {
             this.ac = ac;
-            Console.WriteLine("hello from ATM");
             /*
             // an infanite loop to keep the flow of controll going on and on 
             while (true)
@@ -518,6 +884,8 @@ namespace ATMSimulation
         /// <returns>Returns the corresponding account if it exists, otherwise returns null</returns>
         public Account findAccount(string input)
         {
+
+
             Console.WriteLine("enter your account number..");
             
             int accountNum = Convert.ToInt32(input);
@@ -533,18 +901,6 @@ namespace ATMSimulation
             return null;
         }
 
-        /// <summary>
-        /// Prompts the user for a pin and converts it to an integer.
-        /// </summary>
-        /// <returns>The parsed integer</returns>
-        public int promptForPin()
-        {
-            //textBoxUserPrompt.Text = "Enter Pin:";
-            String str = Console.ReadLine();
-            int pinNumEntered = Convert.ToInt32(str);
-            return pinNumEntered;
-        }
-
 
         /// <summary>
         /// Displays the balance of the current account.
@@ -553,6 +909,9 @@ namespace ATMSimulation
         {
             if (this.activeAccount != null)
             {
+
+
+
                 Console.WriteLine(" your current balance is : " + activeAccount.getBalance());
                 Console.WriteLine(" (prese enter to continue)");
                 Console.ReadLine();
